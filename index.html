@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pious & Getrude Wedding</title>
+  <title>Pious & Getrude</title>
   <style>
     * {
       margin: 0;
@@ -28,6 +28,8 @@
       background: var(--beige-light);
       color: #3a3a3a;
       overflow-x: hidden;
+      margin: 0;
+      padding: 0;
     }
 
     /* Hero Section */
@@ -191,30 +193,12 @@
       padding: 0.5rem 1.5rem;
       border-radius: 50px;
       transition: all 0.3s ease;
-      position: relative;
-      overflow: hidden;
       font-weight: 500;
-    }
-
-    .nav a::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(135, 168, 120, 0.3), transparent);
-      transition: left 0.5s ease;
-    }
-
-    .nav a:hover::before {
-      left: 100%;
     }
 
     .nav a:hover {
       color: var(--sage-dark);
       background: rgba(135, 168, 120, 0.2);
-      transform: translateY(-2px);
     }
 
     /* Sections */
@@ -479,9 +463,125 @@
 
     /* Upload Section */
     .upload-container {
-      max-width: 800px; /* Widened for grid */
+      max-width: 800px;
       margin: 0 auto;
       text-align: center;
+    }
+
+    .memories-header {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 2rem;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .upload-btn {
+      background: linear-gradient(135deg, var(--sage), var(--sage-light));
+      color: white;
+      border: none;
+      padding: 1rem 2.5rem;
+      border-radius: 50px;
+      font-size: 1.1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      box-shadow: 0 8px 25px rgba(135, 168, 120, 0.4);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.7rem;
+      position: relative;
+      overflow: hidden;
+      letter-spacing: 0.5px;
+    }
+
+    .upload-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+      transition: left 0.6s ease;
+    }
+
+    .upload-btn:hover::before {
+      left: 100%;
+    }
+
+    .upload-btn:hover {
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 0 15px 40px rgba(135, 168, 120, 0.5);
+      background: linear-gradient(135deg, var(--sage-dark), var(--sage));
+    }
+
+    .upload-btn:active {
+      transform: translateY(-2px) scale(1.02);
+    }
+
+    .download-btn {
+      background: linear-gradient(135deg, var(--burgundy), var(--burgundy-light));
+      color: white;
+      border: none;
+      padding: 1rem 2.5rem;
+      border-radius: 50px;
+      font-size: 1.1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      box-shadow: 0 8px 25px rgba(128, 0, 32, 0.4);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.7rem;
+      position: relative;
+      overflow: hidden;
+      letter-spacing: 0.5px;
+    }
+
+    .download-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+      transition: left 0.6s ease;
+    }
+
+    .download-btn:hover::before {
+      left: 100%;
+    }
+
+    .download-btn:hover {
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 0 15px 40px rgba(128, 0, 32, 0.5);
+      background: linear-gradient(135deg, var(--burgundy-light), var(--burgundy));
+    }
+
+    .download-btn:active {
+      transform: translateY(-2px) scale(1.02);
+    }
+
+    .download-btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: 0 4px 15px rgba(128, 0, 32, 0.3);
+    }
+
+    .download-btn:disabled:hover {
+      transform: none;
+      box-shadow: 0 4px 15px rgba(128, 0, 32, 0.3);
+    }
+
+    .btn-icon {
+      font-size: 1.3rem;
+      display: inline-flex;
+      align-items: center;
+      filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
     }
 
     .upload-area {
@@ -515,6 +615,22 @@
     .upload-area p {
       color: var(--burgundy-dark);
       font-weight: 500;
+    }
+
+    .empty-state {
+      display: block;
+    }
+
+    .has-memories {
+      display: none;
+    }
+
+    .upload-container.has-content .empty-state {
+      display: none;
+    }
+
+    .upload-container.has-content .has-memories {
+      display: flex;
     }
 
     /* Guestbook */
@@ -725,11 +841,24 @@
       padding: 3rem 2rem;
       background: linear-gradient(135deg, var(--burgundy-dark), var(--burgundy));
       border-top: 3px solid var(--sage);
+      margin: 0;
+      width: 100%;
     }
 
     footer p {
       color: var(--beige-light);
       font-size: 1.1rem;
+      margin: 0;
+      padding: 0;
+    }
+    
+    footer p:last-child {
+      margin-top: 1rem;
+    }
+
+    html {
+      margin: 0;
+      padding: 0;
     }
 
     /* Responsive */
@@ -817,7 +946,7 @@
     <ul>
       <li><a href="#program">Program</a></li>
       <li><a href="#photography">Photography</a></li>
-      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#gallery">Couple Gallery</a></li>
       <li><a href="#memories">Memories</a></li>
       <li><a href="#guestbook">Guestbook</a></li>
     </ul>
@@ -833,62 +962,6 @@
           <span class="time">12:00 PM</span>
           <h3>Groom Arrives</h3>
           <p>Welcoming the groom and family to the ceremony venue.</p>
-        </div>
-      </div>
-
-      <div class="event">
-        <div class="event-content">
-          <span class="time">12:15 PM</span>
-          <h3>Bride Arrives</h3>
-          <p>The bride makes her grand entrance, accompanied by her loved ones.</p>
-        </div>
-      </div>
-
-      <div class="event">
-        <div class="event-content">
-          <span class="time">12:30 PM</span>
-          <h3>Service Starts</h3>
-          <p>Formal commencement of the wedding ceremony.</p>
-        </div>
-      </div>
-
-      <div class="event">
-        <div class="event-content">
-          <span class="time">12:35 PM</span>
-          <h3>Opening Prayer</h3>
-          <p>Inviting God’s presence and blessing on the couple.</p>
-        </div>
-      </div>
-
-      <div class="event">
-        <div class="event-content">
-          <span class="time">12:45 PM</span>
-          <h3>Praises & Worship</h3>
-          <p>Celebrating through music and worship.</p>
-        </div>
-      </div>
-
-      <div class="event">
-        <div class="event-content">
-          <span class="time">01:00 PM</span>
-          <h3>Procession</h3>
-          <p>The wedding party walks down the aisle in celebration.</p>
-        </div>
-      </div>
-
-      <div class="event">
-        <div class="event-content">
-          <span class="time">01:15 PM</span>
-          <h3>Marriage Officiation</h3>
-          <p>The official marriage ceremony and vows exchange.</p>
-        </div>
-      </div>
-
-      <div class="event">
-        <div class="event-content">
-          <span class="time">01:45 PM</span>
-          <h3>Prayers for the Couple</h3>
-          <p>Blessings and prayers for a happy marriage.</p>
         </div>
       </div>
 
@@ -1032,7 +1105,7 @@
 
   <!-- Gallery Section -->
   <section id="gallery" class="section">
-    <h2>Gallery</h2>
+    <h2>Couple Gallery</h2>
     <div class="gallery-grid" id="galleryGrid">
       <div class="gallery-item" data-index="0">
         <img src="images/pious-getty1.png" alt="Wedding Photo 1">
@@ -1053,10 +1126,10 @@
         <img src="images/pious-getty3.png" alt="Wedding Photo 6">
       </div>
       <div class="gallery-item" data-index="6">
-        <img src="images/pious-getty10.png" alt="Wedding Photo 6">
+        <img src="images/pious-getty10.png" alt="Wedding Photo 7">
       </div>
-      <div class="gallery-item" data-index="6">
-        <img src="images/pious-getty11.png" alt="Wedding Photo 6">
+      <div class="gallery-item" data-index="7">
+        <img src="images/pious-getty11.png" alt="Wedding Photo 8">
       </div>
     </div>
   </section>
@@ -1078,16 +1151,29 @@
   <!-- Memories Section -->
   <section id="memories" class="section">
     <h2>Share Your Memories</h2>
-    <div class="upload-container">
-      <label for="fileUpload" class="upload-area">
+    <div class="upload-container" id="uploadContainer">
+      
+      <!-- Empty State: Large Upload Area -->
+      <label for="fileUpload" class="upload-area empty-state">
         <div class="upload-icon">📤</div>
         <p>Click to upload photos or videos</p>
         <p style="color: #8a8a8a; font-size: 0.9rem; margin-top: 0.5rem;">Drag and drop or click to select files</p>
-        <!-- Accept both images and videos -->
         <input type="file" id="fileUpload" multiple accept="image/*,video/*" />
       </label>
+
+      <!-- Has Memories State: Buttons at Top -->
+      <div class="memories-header has-memories">
+        <button class="upload-btn" onclick="document.getElementById('fileUpload').click()">
+          <span class="btn-icon">📤</span>
+          <span>Upload More</span>
+        </button>
+        <button class="download-btn" id="downloadBtn" onclick="downloadAllMemories()">
+          <span class="btn-icon">⬇️</span>
+          <span>Download All</span>
+        </button>
+      </div>
       
-      <!-- New Grid Container for Uploads -->
+      <!-- Grid Container for Uploads -->
       <div id="memoriesGrid" class="gallery-grid"></div>
     </div>
   </section>
@@ -1244,6 +1330,15 @@
     // --- MEMORIES UPLOAD LOGIC ---
     const fileInput = document.getElementById('fileUpload');
     const memoriesGrid = document.getElementById('memoriesGrid');
+    const uploadContainer = document.getElementById('uploadContainer');
+
+    function updateUploadUIState() {
+      if (memoriesData.length > 0) {
+        uploadContainer.classList.add('has-content');
+      } else {
+        uploadContainer.classList.remove('has-content');
+      }
+    }
 
     fileInput.addEventListener('change', (e) => {
       const files = Array.from(e.target.files);
@@ -1253,8 +1348,8 @@
         const isVideo = file.type.startsWith('video/');
         const type = isVideo ? 'video' : 'image';
         
-        // Add to data array
-        memoriesData.push({ type, src: url });
+        // Add to data array with file reference
+        memoriesData.push({ type, src: url, file });
         const newIndex = memoriesData.length - 1;
 
         // Create DOM Element
@@ -1282,9 +1377,60 @@
         memoriesGrid.appendChild(item);
       });
       
+      updateUploadUIState();
       // Clear input to allow re-uploading same file
       e.target.value = ''; 
     });
+
+    // Download all memories functionality
+    async function downloadAllMemories() {
+      if (memoriesData.length === 0) {
+        alert('No memories to download yet!');
+        return;
+      }
+
+      const downloadBtn = document.getElementById('downloadBtn');
+      downloadBtn.disabled = true;
+      downloadBtn.innerHTML = '<span class="btn-icon">⏳</span><span>Downloading...</span>';
+
+      try {
+        // Download each file
+        for (let i = 0; i < memoriesData.length; i++) {
+          const memory = memoriesData[i];
+          const link = document.createElement('a');
+          link.href = memory.src;
+          
+          // Generate filename
+          const extension = memory.type === 'video' ? 'mp4' : 'jpg';
+          link.download = `wedding-memory-${i + 1}.${extension}`;
+          
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+          
+          // Small delay between downloads to prevent browser blocking
+          if (i < memoriesData.length - 1) {
+            await new Promise(resolve => setTimeout(resolve, 300));
+          }
+        }
+        
+        downloadBtn.innerHTML = '<span class="btn-icon">✅</span><span>Downloaded!</span>';
+        setTimeout(() => {
+          downloadBtn.innerHTML = '<span class="btn-icon">⬇️</span><span>Download All</span>';
+          downloadBtn.disabled = false;
+        }, 2000);
+      } catch (error) {
+        console.error('Download error:', error);
+        downloadBtn.innerHTML = '<span class="btn-icon">❌</span><span>Error</span>';
+        setTimeout(() => {
+          downloadBtn.innerHTML = '<span class="btn-icon">⬇️</span><span>Download All</span>';
+          downloadBtn.disabled = false;
+        }, 2000);
+      }
+    }
+
+    // Initialize UI state
+    updateUploadUIState();
 
     // Guestbook functionality
     const form = document.getElementById('guestbookForm');
