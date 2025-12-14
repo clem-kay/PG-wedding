@@ -1,9 +1,11 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pious & Getrude</title>
+  <link rel="stylesheet" href="css/style.css">
   <style>
     * {
       margin: 0;
@@ -262,6 +264,7 @@
       opacity: 0;
       transform: translateY(40px);
       transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+       will-change: transform, opacity;
     }
 
     .event.visible {
@@ -361,6 +364,67 @@
       line-height: 1.6;
     }
 
+    /* Ministers Styles - NO PHOTOS */
+    .ministers-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .minister-card {
+      background: white;
+      border-radius: 20px;
+      padding: 2rem;
+      text-align: center;
+      border: 2px solid var(--beige);
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .minister-card::before {
+      content: '✝️';
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      font-size: 2rem;
+      opacity: 0.2;
+    }
+
+    .minister-card.featured {
+      background: linear-gradient(135deg, rgba(128, 0, 32, 0.05), rgba(135, 168, 120, 0.08));
+      border-color: var(--burgundy-light);
+      border-width: 3px;
+    }
+
+    .minister-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 40px rgba(128, 0, 32, 0.15);
+      border-color: var(--sage);
+    }
+
+    .minister-card h3 {
+      font-size: 1.3rem;
+      color: var(--burgundy-dark);
+      margin-bottom: 0.8rem;
+      font-weight: 600;
+    }
+
+    .minister-title {
+      color: var(--sage-dark);
+      font-weight: 600;
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .minister-church {
+      color: #666;
+      font-style: italic;
+      font-size: 0.95rem;
+    }
+
     /* Photography List */
     .photography-list {
       display: grid;
@@ -423,7 +487,7 @@
       cursor: pointer;
       background: linear-gradient(135deg, var(--sage-light), var(--beige));
       border: 3px solid var(--burgundy-light);
-      transition: transform 0.3s ease, z-index 0.3s ease;
+      transition: transform 0.3s ease, z-index 0.3s ease, opacity 0.6s ease;
       z-index: 1;
     }
 
@@ -438,13 +502,40 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: top; 
+      object-position: 50% 25%; 
       display: block;
       transition: transform 0.3s ease;
     }
     
     .gallery-item:hover img, .gallery-item:hover video {
       transform: scale(1.1);
+    }
+
+    .gallery-item.is-swapping {
+      animation: elegantSwap 1.4s cubic-bezier(0.25,1,0.5,1);
+    }
+
+    @keyframes elegantSwap {
+      0% {
+        opacity: 1;
+        transform: scale(1) rotate(0deg);
+      }
+      25% {
+        opacity: 0.7;
+        transform: scale(0.95) rotate(-2deg);
+      }
+      50% {
+        opacity: 0.5;
+        transform: scale(0.9) rotate(2deg);
+      }
+      75% {
+        opacity: 0.7;
+        transform: scale(0.95) rotate(-1deg);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1) rotate(0deg);
+      }
     }
 
     /* Video Indicator Overlay */
@@ -459,6 +550,218 @@
       pointer-events: none;
       text-shadow: 0 2px 5px rgba(0,0,0,0.5);
       z-index: 2;
+    }
+
+    /* Bridal Party Styles */
+    .bridal-party-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
+    }
+
+    .party-pair {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      align-items: center;
+      position: relative;
+      padding: 2rem;
+      background: linear-gradient(135deg, rgba(232, 220, 196, 0.3), rgba(135, 168, 120, 0.15));
+      border-radius: 25px;
+      border: 2px solid transparent;
+      transition: all 0.4s ease;
+    }
+
+    .party-pair::before {
+      content: '💕';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 2rem;
+      background: white;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 5px 20px rgba(128, 0, 32, 0.2);
+      border: 3px solid var(--burgundy-light);
+      z-index: 10;
+    }
+
+    .party-pair:hover {
+      border-color: var(--sage-light);
+      box-shadow: 0 10px 40px rgba(135, 168, 120, 0.2);
+      transform: translateY(-5px);
+    }
+
+    .party-member {
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+
+    .party-member:hover {
+      transform: scale(1.05);
+    }
+
+    .member-photo {
+      width: 200px;
+      height: 200px;
+      margin: 0 auto 1.5rem;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 4px solid var(--burgundy-light);
+      box-shadow: 0 8px 25px rgba(128, 0, 32, 0.25);
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    .bridesmaid .member-photo {
+      border-color: var(--burgundy-light);
+    }
+
+    .groomsman .member-photo {
+      border-color: var(--sage);
+    }
+
+    .member-photo:hover {
+      box-shadow: 0 12px 35px rgba(128, 0, 32, 0.35);
+      transform: scale(1.1);
+    }
+
+    .member-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .party-member h3 {
+      font-size: 1.4rem;
+      color: var(--burgundy-dark);
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+    }
+
+    .party-member p {
+      color: var(--sage-dark);
+      font-style: italic;
+      font-size: 1.1rem;
+    }
+
+    /* Master of Ceremony Styles */
+    .mc-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 3rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .mc-card {
+      background: linear-gradient(135deg, rgba(232, 220, 196, 0.5), rgba(135, 168, 120, 0.2));
+      border: 3px solid var(--burgundy-light);
+      border-radius: 25px;
+      padding: 3rem 2rem;
+      text-align: center;
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .mc-card::before {
+      content: '🎤';
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      font-size: 2rem;
+      opacity: 0.3;
+    }
+
+    .mc-card:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 20px 50px rgba(128, 0, 32, 0.2);
+      border-color: var(--sage);
+    }
+
+    .mc-photo {
+      width: 200px;
+      height: 200px;
+      margin: 0 auto 1.5rem;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 5px solid var(--burgundy);
+      box-shadow: 0 10px 30px rgba(128, 0, 32, 0.3);
+      transition: all 0.3s ease;
+    }
+
+    .mc-photo:hover {
+      transform: scale(1.15);
+      box-shadow: 0 15px 40px rgba(128, 0, 32, 0.4);
+    }
+
+    .mc-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .mc-card h3 {
+      font-size: 1.6rem;
+      color: var(--burgundy-dark);
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+    }
+
+    .mc-card p {
+      color: var(--sage-dark);
+      font-size: 1.2rem;
+      font-style: italic;
+      font-weight: 600;
+    }
+
+    /* Gift Table Styles */
+    .gift-table-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .gift-attendant {
+      background: linear-gradient(135deg, rgba(135, 168, 120, 0.15), rgba(232, 220, 196, 0.3));
+      border: 2px solid var(--sage-light);
+      border-radius: 20px;
+      padding: 2rem 1.5rem;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .gift-attendant:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(135, 168, 120, 0.2);
+      border-color: var(--burgundy-light);
+    }
+
+    .attendant-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .gift-attendant h3 {
+      font-size: 1.2rem;
+      color: var(--burgundy-dark);
+      font-weight: 500;
     }
 
     /* Upload Section */
@@ -904,6 +1207,7 @@
       }
 
       .gallery-grid {
+        position: relative;
         grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
       }
 
@@ -916,6 +1220,32 @@
       .modal-prev { left: 1rem; }
       .modal-next { right: 1rem; }
       .modal-close { top: 1rem; right: 1rem; }
+
+      .party-pair {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+        padding: 2rem 1rem;
+      }
+
+      .party-pair::before {
+        top: calc(50% - 30px);
+      }
+
+      .member-photo {
+        width: 150px;
+        height: 150px;
+      }
+
+      .mc-container {
+        gap: 2rem;
+      }
+
+      .mc-photo {
+        width: 150px;
+        height: 150px;
+        object-fit: top;
+        object-position: 50% 25%;
+      }
     }
   </style>
 </head>
@@ -924,79 +1254,249 @@
   <!-- Hero Section -->
   <header class="hero">
     <div class="hero-carousel" id="heroCarousel">
-      <div class="hero-slide active" style="background-image: url('https://images.unsplash.com/photo-1519741497674-611481863552?w=1600');">
-      </div>
-      <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1606800052052-a08af7148866?w=1600');">
-      </div>
-      <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1520854221256-17451cc331bf?w=1600');">
-      </div>
+      <div class="hero-slide active" style="background-image: url('https://images.unsplash.com/photo-1519741497674-611481863552?w=1600');"></div>
+      <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1606800052052-a08af7148866?w=1600');"></div>
+      <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1520854221256-17451cc331bf?w=1600');"></div>
     </div>
     <div class="hero-content">
       <h1>Pious & Getrude</h1>
       <p>Join us for our unforgettable wedding celebration</p>
       <p>Forever Mine</p>
     </div>
-    <div class="scroll-indicator" id="scrollArrow">
-     ⬇
-    </div>
+    <div class="scroll-indicator" id="scrollArrow">⬇</div>
   </header>
 
   <!-- Navigation -->
   <nav class="nav">
     <ul>
       <li><a href="#program">Program</a></li>
+      <li><a href="#ministers">Ministers</a></li>
+      <li><a href="#bridal-party">Bridal Party</a></li>
+      <li><a href="#mc">MCs</a></li>
+      <li><a href="#gift-table">Gift Table</a></li>
       <li><a href="#photography">Photography</a></li>
-      <li><a href="#gallery">Couple Gallery</a></li>
+      <li><a href="#gallery">Gallery</a></li>
       <li><a href="#memories">Memories</a></li>
       <li><a href="#guestbook">Guestbook</a></li>
     </ul>
   </nav>
 
-  <!-- Program Section -->
-  <section id="program" class="section">
-    <h2>Event Schedule</h2>
-    <div class="timeline">
-      
-      <div class="event">
-        <div class="event-content">
-          <span class="time">12:00 PM</span>
-          <h3>Groom Arrives</h3>
-          <p>Welcoming the groom and family to the ceremony venue.</p>
+ <!-- Program Section -->
+<section id="program" class="section">
+  <h2>Event Schedule</h2>
+
+  <div class="timeline">
+
+    <div class="event">
+      <h3>Groom Arrives</h3>
+    </div>
+
+    <div class="event">
+      <h3>Bride Arrives</h3>
+    </div>
+
+    <div class="event">
+      <h3>Service Starts</h3>
+    </div>
+
+    <div class="event">
+      <h3>Opening Prayer</h3>
+    </div>
+
+    <div class="event">
+      <h3>Praises & Worship</h3>
+    </div>
+
+    <div class="event">
+      <h3>Procession</h3>
+    </div>
+
+    <div class="event">
+      <h3>Marriage Officiation</h3>
+    </div>
+
+    <div class="event">
+      <h3>Prayers for the Couple</h3>
+    </div>
+
+    <div class="event">
+      <h3>Signing of Marriage Certificate</h3>
+    </div>
+
+    <div class="event">
+      <h3>Praises & Worship</h3>
+    </div>
+
+    <div class="event">
+      <h3>Song Ministration</h3>
+    </div>
+
+    <div class="event">
+      <h3>Preaching</h3>
+    </div>
+
+    <div class="event">
+      <h3>Presentation of Certificates</h3>
+    </div>
+
+    <div class="event">
+      <h3>Couple’s First Communion</h3>
+    </div>
+
+    <div class="event">
+      <h3>Announcements & Closing Prayer</h3>
+    </div>
+
+    <div class="event">
+      <h3>Recession</h3>
+    </div>
+
+  </div>
+</section>
+
+
+  <!-- Officiating Ministers Section -->
+  <section id="ministers" class="section" style="background: linear-gradient(135deg, rgba(135, 168, 120, 0.08), rgba(232, 220, 196, 0.15));">
+    <h2>Officiating Ministers</h2>
+    <div class="ministers-grid">
+      <div class="minister-card featured">
+        <h3>Rev Alexander Botchwey</h3>
+        <p class="minister-title">Head Pastor</p>
+        <p class="minister-church">ICGC Kings Temple</p>
+      </div>
+
+      <div class="minister-card">
+        <h3>Bishop Raymond Acquah</h3>
+        <p class="minister-title">Presiding Bishop</p>
+        <p class="minister-church">Perez Chapel Zoeland</p>
+      </div>
+
+      <div class="minister-card">
+        <h3>Rev Mariline Dzifa Acquah</h3>
+        <p class="minister-church">Perez Chapel Zoeland</p>
+      </div>
+
+      <div class="minister-card">
+        <h3>Rev. Eric Ampiaw</h3>
+        <p class="minister-title">District Pastor</p>
+        <p class="minister-church">Assemblies of God, Gbawe/Awoshie</p>
+      </div>
+
+      <div class="minister-card">
+        <h3>Rev. Samuel Oppong</h3>
+        <p class="minister-church">ICGC Kings Temple</p>
+      </div>
+
+      <div class="minister-card">
+        <h3>Rev. James Abbey</h3>
+        <p class="minister-church">Perez Chapel Zoeland</p>
+      </div>
+
+      <div class="minister-card">
+        <h3>Rev. George Crackson</h3>
+        <p class="minister-church">ICGC Racecourse Assembly</p>
+      </div>
+
+      <div class="minister-card">
+        <h3>Rev. Gyan Frimpong</h3>
+        <p class="minister-church">Christian Gospel Church International</p>
+      </div>
+
+      <div class="minister-card">
+        <h3>Father Paul Essibu</h3>
+        <p class="minister-church">Catholic Church</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bridal Party Section -->
+  <section id="bridal-party" class="section">
+    <h2>Bridal Party</h2>
+    <div class="bridal-party-container">
+      <div class="party-pair">
+        <div class="party-member bridesmaid">
+          <div class="member-photo">
+            <img src="images/bridesmaid1.jpg" alt="Bridesmaid 1">
+          </div>
+          <h3>Blessing</h3>
+          <p>Maid of Honor</p>
+        </div>
+        <div class="party-member groomsman">
+          <div class="member-photo">
+            <img src="images/eric.jpeg" alt="Groomsman 1">
+          </div>
+          <h3>Eric</h3>
+          <p>Best Man</p>
         </div>
       </div>
 
-      <div class="event">
-        <div class="event-content">
-          <span class="time">02:00 PM</span>
-          <h3>Signing Certificate</h3>
-          <p>Formal documentation of the union.</p>
+      <div class="party-pair">
+        <div class="party-member bridesmaid">
+          <div class="member-photo">
+            <img src="images/bridesmaid2.jpg" alt="Bridesmaid 2">
+          </div>
+          <h3>Name</h3>
+          <p>Bridesmaid</p>
+        </div>
+        <div class="party-member groomsman">
+          <div class="member-photo">
+            <img src="images/samuel.jpeg" alt="Groomsman 2">
+          </div>
+          <h3>Samuel</h3>
+          <p>Groomsman</p>
         </div>
       </div>
 
-      <div class="event">
-        <div class="event-content">
-          <span class="time">02:15 PM</span>
-          <h3>Song Ministration</h3>
-          <p>Celebratory songs and musical performances.</p>
+      <div class="party-pair">
+        <div class="party-member bridesmaid">
+          <div class="member-photo">
+            <img src="images/bridesmaid3.jpg" alt="Bridesmaid 3">
+          </div>
+          <h3>Name</h3>
+          <p>Bridesmaid</p>
+        </div>
+        <div class="party-member groomsman">
+          <div class="member-photo">
+            <img src="images/jerry.jpeg" alt="Groomsman 3">
+          </div>
+          <h3>Jerry</h3>
+          <p>Groomsman</p>
         </div>
       </div>
 
-      <div class="event">
-        <div class="event-content">
-          <span class="time">02:45 PM</span>
-          <h3>Presentation</h3>
-          <p>Short sermon and presentation of marriage certificates.</p>
+      <div class="party-pair">
+        <div class="party-member bridesmaid">
+          <div class="member-photo">
+            <img src="images/bridesmaid4.jpg" alt="Bridesmaid 4">
+          </div>
+          <h3>Name</h3>
+          <p>Bridesmaid</p>
+        </div>
+        <div class="party-member groomsman">
+          <div class="member-photo">
+            <img src="images/Jeffery.jpeg" alt="Groomsman 4">
+          </div>
+          <h3>Jeffery</h3>
+          <p>Groomsman</p>
         </div>
       </div>
 
-      <div class="event">
-        <div class="event-content">
-          <span class="time">03:00 PM</span>
-          <h3>Recession & Closing</h3>
-          <p>Guests exit and photography session begins.</p>
+      <div class="party-pair">
+        <div class="party-member bridesmaid">
+          <div class="member-photo">
+            <img src="images/bridesmaid5.jpg" alt="Bridesmaid 5">
+          </div>
+          <h3>Name</h3>
+          <p>Bridesmaid</p>
+        </div>
+        <div class="party-member groomsman">
+          <div class="member-photo">
+            <img src="images/groomsman5.jpg" alt="Groomsman 5">
+          </div>
+          <h3>Name</h3>
+          <p>Groomsman</p>
         </div>
       </div>
-
     </div>
   </section>
 
@@ -1108,28 +1608,37 @@
     <h2>Couple Gallery</h2>
     <div class="gallery-grid" id="galleryGrid">
       <div class="gallery-item" data-index="0">
-        <img src="images/pious-getty1.png" alt="Wedding Photo 1">
+        <img src="images/pious-getty11.png" alt="Wedding Photo 1">
       </div>
       <div class="gallery-item" data-index="1">
-        <img src="images/pious-getty5.png" alt="Wedding Photo 2">
+        <img src="images/pious-getty3.png" alt="Wedding Photo 2">
       </div>
       <div class="gallery-item" data-index="2">
-        <img src="images/pious-getty2.png" alt="Wedding Photo 3">
+        <img src="images/pious-getty9.png" alt="Wedding Photo 3">
       </div>
       <div class="gallery-item" data-index="3">
         <img src="images/pious-getty7.png" alt="Wedding Photo 4">
       </div>
       <div class="gallery-item" data-index="4">
-        <img src="images/pious-getty9.png" alt="Wedding Photo 5">
+        <img src="images/pious-getty5.png" alt="Wedding Photo 5">
       </div>
       <div class="gallery-item" data-index="5">
         <img src="images/pious-getty3.png" alt="Wedding Photo 6">
       </div>
       <div class="gallery-item" data-index="6">
-        <img src="images/pious-getty10.png" alt="Wedding Photo 7">
+        <img src="images/m1.jpg" alt="Wedding Photo 7">
       </div>
       <div class="gallery-item" data-index="7">
-        <img src="images/pious-getty11.png" alt="Wedding Photo 8">
+        <img src="images/m2.jpg" alt="Wedding Photo 8">
+      </div>
+      <div class="gallery-item" data-index="8">
+        <img src="images/m3.jpg" alt="Wedding Photo 9">
+      </div>
+      <div class="gallery-item" data-index="9">
+        <img src="images/m4.jpg" alt="Wedding Photo 10">
+      </div>
+      <div class="gallery-item" data-index="10">
+        <img src="images/m5.jpg" alt="Wedding Photo 11">
       </div>
     </div>
   </section>
@@ -1147,6 +1656,21 @@
     
     <span class="modal-nav modal-next" id="modalNext">&#10095;</span>
   </div>
+
+    <!-- Gift Table Section -->
+  <section id="gift-table" class="section" style="background: linear-gradient(135deg, rgba(128, 0, 32, 0.05), rgba(135, 168, 120, 0.08));">
+    <h2>Gift Table Attendants</h2>
+    <div class="gift-table-container">
+      <div class="gift-attendant">
+        <div class="attendant-icon">🎁</div>
+        <h3>Emmanuella</h3>
+      </div>
+      <div class="gift-attendant">
+        <div class="attendant-icon">🎁</div>
+        <h3>Victor</h3>
+      </div>
+    </div>
+  </section>
 
   <!-- Memories Section -->
   <section id="memories" class="section">
@@ -1188,6 +1712,27 @@
         <button type="submit">Post Message</button>
       </form>
       <div id="messages"></div>
+    </div>
+  </section>
+
+    <!-- Master of Ceremony Section -->
+  <section id="mc" class="section">
+    <h2>Masters of Ceremony</h2>
+    <div class="mc-container">
+      <div class="mc-card">
+        <div class="mc-photo">
+          <img src="images/dorcas.jpeg" alt="Master of Ceremony 1">
+        </div>
+        <h3>Dorcas</h3>
+        <p>Master of Ceremony</p>
+      </div>
+      <div class="mc-card">
+        <div class="mc-photo">
+          <img src="images/mc2.jpg" alt="Master of Ceremony 2">
+        </div>
+        <h3>Enoch</h3>
+        <p>Master of Ceremony</p>
+      </div>
     </div>
   </section>
 
@@ -1487,6 +2032,44 @@
     document.querySelectorAll('.event').forEach(event => {
       observer.observe(event);
     });
+
+ /* ================= CLASSY GALLERY SHUFFLE ================= */
+
+const galleryGrid = document.getElementById("galleryGrid");
+let isPaused = false;
+
+/**
+ * Elegant one-item swap
+ * Runs slowly and gracefully
+ */
+function classyShuffle() {
+  if (isPaused) return;
+
+  const items = Array.from(galleryGrid.children);
+  if (items.length < 2) return;
+
+  const index = Math.floor(Math.random() * items.length);
+  const item = items[index];
+
+  item.classList.add("is-swapping");
+
+  setTimeout(() => {
+    item.classList.remove("is-swapping");
+    galleryGrid.appendChild(item);
+  }, 1400);
+}
+
+/* Start after page settles */
+setTimeout(() => {
+  setInterval(classyShuffle, 30000); // every 30 seconds
+}, 5000);
+
+/* Pause when user interacts */
+galleryGrid.addEventListener("mouseenter", () => isPaused = true);
+galleryGrid.addEventListener("mouseleave", () => isPaused = false);
+galleryGrid.addEventListener("click", () => isPaused = true);
+
+
   </script>
 </body>
 </html>
