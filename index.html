@@ -425,6 +425,144 @@
       font-size: 0.95rem;
     }
 
+    /* Bridal Party – Refined Compact Cards */
+    .bridal-party-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+    max-width: 1000px;
+    margin: 0 auto;
+    }
+
+    .bridal-pair-card {
+    background: white;
+    border-radius: 18px;
+    padding: 1.4rem 1.5rem;
+    border: 1.5px solid var(--beige);
+    text-align: center;
+    position: relative;
+    transition: all 0.35s ease;
+    }
+
+    .bridal-pair-card::before {
+    content: '🤍';
+    position: absolute;
+    top: 0.8rem;
+    right: 0.9rem;
+    font-size: 1.4rem;
+    opacity: 0.25;
+    }
+
+    .bridal-pair-card.featured {
+    border: 2px solid var(--burgundy-light);
+    background: linear-gradient(
+        135deg,
+        rgba(128, 0, 32, 0.04),
+        rgba(135, 168, 120, 0.06)
+    );
+    }
+
+    .bridal-pair-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 28px rgba(128, 0, 32, 0.15);
+    }
+
+    .pair-role {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--burgundy-dark);
+    margin-bottom: 0.6rem;
+    }
+
+    .pair-names {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 0.6rem;
+    }
+
+    .pair-divider {
+    font-size: 1.1rem;
+    opacity: 0.5;
+    }
+
+    .pair-member h3 {
+    font-size: 1.05rem;
+    color: var(--burgundy-dark);
+    margin-bottom: 0.15rem;
+    }
+
+    .role {
+    font-style: italic;
+    font-size: 0.8rem;
+    }
+
+    .role.bridesmaid {
+    color: var(--burgundy);
+    }
+
+    .role.groomsman {
+    color: var(--sage-dark);
+    }
+
+    /* Bridal Party Carousel */
+        .bridal-carousel {
+        background: linear-gradient(
+            135deg,
+            rgba(232, 220, 196, 0.35),
+            rgba(135, 168, 120, 0.12)
+        );
+        }
+
+        .carousel-wrapper {
+        position: relative;
+        max-width: 1000px;
+        margin: 0 auto;
+        overflow: hidden;
+        }
+
+        .carousel-track {
+        display: flex;
+        gap: 1.2rem;
+        transition: transform 0.45s ease;
+        }
+
+        .carousel-track img {
+        width: 260px;
+        height: 320px;
+        object-fit: cover;
+        border-radius: 18px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .carousel-btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: white;
+        border: none;
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        font-size: 1.5rem;
+        cursor: pointer;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+        z-index: 5;
+        }
+
+        .carousel-btn.prev {
+        left: -10px;
+        }
+
+        .carousel-btn.next {
+        right: -10px;
+        }
+
+        .carousel-btn:hover {
+        background: var(--burgundy);
+        color: white;
+        }
+
     /* Photography List */
     .photography-list {
       display: grid;
@@ -1247,6 +1385,65 @@
         object-position: 50% 25%;
       }
     }
+    .bridal-carousel {
+      background: linear-gradient(135deg, rgba(232, 220, 196, 0.35), rgba(135, 168, 120, 0.12));
+      padding: 4rem 0;
+    }
+
+    .carousel-wrapper {
+      position: relative;
+      max-width: 1000px;
+      margin: 0 auto;
+      overflow: hidden;
+      border-radius: 20px;
+    }
+
+    .carousel-track {
+      display: flex;
+      gap: 1.2rem;
+      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      will-change: transform;
+    }
+
+    .carousel-track img {
+      width: 260px;
+      height: 320px;
+      object-fit: cover;
+      border-radius: 18px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+      flex-shrink: 0;
+    }
+
+    .carousel-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: white;
+      border: none;
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      font-size: 1.8rem;
+      cursor: pointer;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+      z-index: 10;
+      transition: all 0.3s ease;
+    }
+
+    .carousel-btn:hover {
+      background: var(--burgundy);
+      color: white;
+      transform: translateY(-50%) scale(1.1);
+    }
+
+    .carousel-btn.prev { left: 15px; }
+    .carousel-btn.next { right: 15px; }
+
+    /* Responsive adjustment */
+    @media (max-width: 768px) {
+      .carousel-track img { width: 220px; height: 280px; }
+      .carousel-btn { width: 40px; height: 40px; font-size: 1.5rem; }
+    }
   </style>
 </head>
 <body>
@@ -1551,96 +1748,136 @@
     </div>
   </section>
 
-  <!-- Bridal Party Section -->
-  <section id="bridal-party" class="section">
-    <h2>Bridal Party</h2>
-    <div class="bridal-party-container">
-      <div class="party-pair">
-        <div class="party-member bridesmaid">
-          <div class="member-photo">
-            <img src="images/bridesmaid1.jpg" alt="Bridesmaid 1">
-          </div>
+<!-- Bridal Party Section -->
+ <section id="bridal-party" class="section" style="background: linear-gradient(135deg, rgba(232,220,196,.4), rgba(135,168,120,.15));">
+  <h2>Bridal Party</h2>
+
+  <div class="bridal-party-cards">
+
+    <!-- Featured Pair: Maid of Honour & Best Man -->
+    <div class="bridal-pair-card featured">
+      <div class="pair-role">Maid of Honour & Best Man</div>
+
+      <div class="pair-names">
+        <div class="pair-member">
           <h3>Blessing</h3>
-          <p>Maid of Honor</p>
+          <p class="role bridesmaid">Maid of Honour</p>
         </div>
-        <div class="party-member groomsman">
-          <div class="member-photo">
-            <img src="images/eric.jpeg" alt="Groomsman 1">
-          </div>
+
+        <div class="pair-divider">💍</div>
+
+        <div class="pair-member">
           <h3>Eric</h3>
-          <p>Best Man</p>
-        </div>
-      </div>
-
-      <div class="party-pair">
-        <div class="party-member bridesmaid">
-          <div class="member-photo">
-            <img src="images/bridesmaid2.jpg" alt="Bridesmaid 2">
-          </div>
-          <h3>Name</h3>
-          <p>Bridesmaid</p>
-        </div>
-        <div class="party-member groomsman">
-          <div class="member-photo">
-            <img src="images/samuel.jpeg" alt="Groomsman 2">
-          </div>
-          <h3>Samuel</h3>
-          <p>Groomsman</p>
-        </div>
-      </div>
-
-      <div class="party-pair">
-        <div class="party-member bridesmaid">
-          <div class="member-photo">
-            <img src="images/bridesmaid3.jpg" alt="Bridesmaid 3">
-          </div>
-          <h3>Name</h3>
-          <p>Bridesmaid</p>
-        </div>
-        <div class="party-member groomsman">
-          <div class="member-photo">
-            <img src="images/jerry.jpeg" alt="Groomsman 3">
-          </div>
-          <h3>Jerry</h3>
-          <p>Groomsman</p>
-        </div>
-      </div>
-
-      <div class="party-pair">
-        <div class="party-member bridesmaid">
-          <div class="member-photo">
-            <img src="images/bridesmaid4.jpg" alt="Bridesmaid 4">
-          </div>
-          <h3>Name</h3>
-          <p>Bridesmaid</p>
-        </div>
-        <div class="party-member groomsman">
-          <div class="member-photo">
-            <img src="images/Jeffery.jpeg" alt="Groomsman 4">
-          </div>
-          <h3>Jeffery</h3>
-          <p>Groomsman</p>
-        </div>
-      </div>
-
-      <div class="party-pair">
-        <div class="party-member bridesmaid">
-          <div class="member-photo">
-            <img src="images/bridesmaid5.jpg" alt="Bridesmaid 5">
-          </div>
-          <h3>Name</h3>
-          <p>Bridesmaid</p>
-        </div>
-        <div class="party-member groomsman">
-          <div class="member-photo">
-            <img src="images/groomsman5.jpg" alt="Groomsman 5">
-          </div>
-          <h3>Name</h3>
-          <p>Groomsman</p>
+          <p class="role groomsman">Best Man</p>
         </div>
       </div>
     </div>
-  </section>
+
+    <!-- Pair 2 -->
+    <div class="bridal-pair-card">
+      <div class="pair-names">
+        <div class="pair-member">
+          <h3>Lilian</h3>
+          <p class="role bridesmaid">Bridesmaid</p>
+        </div>
+        <div class="pair-divider">💍</div>
+        <div class="pair-member">
+          <h3>Jerry</h3>
+          <p class="role groomsman">Groomsman</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pair 3 -->
+    <div class="bridal-pair-card">
+      <div class="pair-names">
+        <div class="pair-member">
+          <h3>Korkor</h3>
+          <p class="role bridesmaid">Bridesmaid</p>
+        </div>
+        <div class="pair-divider">💍</div>
+        <div class="pair-member">
+          <h3>Solomon</h3>
+          <p class="role groomsman">Groomsman</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pair 4 -->
+    <div class="bridal-pair-card">
+      <div class="pair-names">
+        <div class="pair-member">
+          <h3>Priscilla</h3>
+          <p class="role bridesmaid">Bridesmaid</p>
+        </div>
+        <div class="pair-divider">💍</div>
+        <div class="pair-member">
+          <h3>Nathaniel</h3>
+          <p class="role groomsman">Groomsman</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pair 5 -->
+    <div class="bridal-pair-card">
+      <div class="pair-names">
+        <div class="pair-member">
+          <h3>Hannah</h3>
+          <p class="role bridesmaid">Bridesmaid</p>
+        </div>
+        <div class="pair-divider">💍</div>
+        <div class="pair-member">
+          <h3>Samuel O.</h3>
+          <p class="role groomsman">Groomsman</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pairs 6–10 (ready for you to fill in remaining bridesmaids) -->
+    <div class="bridal-pair-card">
+      <div class="pair-names">
+        <div class="pair-member">
+          <h3>Bella</h3>
+          <p class="role bridesmaid">Bridesmaid</p>
+        </div>
+        <div class="pair-divider">💍</div>
+        <div class="pair-member">
+          <h3>Jeffery</h3>
+          <p class="role groomsman">Groomsman</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="bridal-pair-card">
+      <div class="pair-names">
+        <div class="pair-member">
+          <h3>Sena</h3>
+          <p class="role bridesmaid">Bridesmaid</p>
+        </div>
+        <div class="pair-divider">💍</div>
+        <div class="pair-member">
+          <h3>Benedict</h3>
+          <p class="role groomsman">Groomsman</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="bridal-pair-card">
+      <div class="pair-names">
+        <div class="pair-member">
+          <h3>Karen</h3>
+          <p class="role bridesmaid">Bridesmaid</p>
+        </div>
+        <div class="pair-divider">💍</div>
+        <div class="pair-member">
+          <h3>Samuel A.</h3>
+          <p class="role groomsman">Groomsman</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
 
   <!-- Image/Video Preview Modal -->
   <div id="imageModal" class="modal">
@@ -1658,18 +1895,64 @@
 
     <!-- Gift Table Section -->
   <section id="gift-table" class="section" style="background: linear-gradient(135deg, rgba(128, 0, 32, 0.05), rgba(135, 168, 120, 0.08));">
-    <h2>Gift Table Attendants</h2>
-    <div class="gift-table-container">
-      <div class="gift-attendant">
-        <div class="attendant-icon">🎁</div>
-        <h3>Emmanuella</h3>
-      </div>
-      <div class="gift-attendant">
-        <div class="attendant-icon">🎁</div>
-        <h3>Victor</h3>
-      </div>
+  <h2>Gift Table Attendants</h2>
+  
+  <div class="gift-table-container">
+    <div class="gift-attendant">
+      <div class="attendant-icon">🎁</div>
+      <h3>Emmanuella</h3>
     </div>
-  </section>
+    <div class="gift-attendant">
+      <div class="attendant-icon">🎁</div>
+      <h3>Victor</h3>
+    </div>
+  </div>
+<div style="max-width: 420px; margin: 3rem auto 0;">
+    <div class="gift-attendant" style="
+      background: white;
+      border-radius: 24px;
+      padding: 2rem;
+      text-align: center;
+      box-shadow: 0 15px 35px rgba(128,0,32,0.12);
+      border: 2px solid var(--beige);
+      animation: float 4s ease-in-out infinite;
+      position: relative;
+      overflow: hidden;
+    ">
+      <div style="
+        position: absolute;
+        top: 0; left: 0; right: 0;
+        height: 6px;
+        background: linear-gradient(90deg, var(--burgundy), var(--sage-light));
+      "></div>
+      
+      <h3 style="
+        margin: 0 0 0.5rem;
+        font-size: 1.5rem;
+        color: var(--burgundy-dark);
+      ">054 030 5117</h3>
+      
+      <p style="
+        margin: 0;
+        color: var(--sage-dark);
+        font-style: italic;
+        font-weight: 500;
+      ">Getrude Koomson • MTN Mobile Money</p>
+    </div>
+  </div>
+
+  <!-- Optional tiny thank-you line -->
+  <p style="
+    text-align: center;
+    margin-top: 2rem;
+    color: var(--burgundy-dark);
+    font-style: italic;
+    opacity: 0.9;
+  ">
+    Your love & blessings mean everything to us. Thank you! Heart with Ribbon
+  </p>
+</section>
+</section>
 
   <!-- Memories Section -->
   <section id="memories" class="section">
@@ -1718,20 +2001,45 @@
   <section id="mc" class="section">
     <h2>Masters of Ceremony</h2>
     <div class="mc-container">
-      <div class="mc-card">
-        <div class="mc-photo">
-          <img src="images/dorcas.jpeg" alt="Master of Ceremony 1">
-        </div>
-        <h3>Dorcas</h3>
-        <p>Master of Ceremony</p>
+      <div class="gift-table-container">
+    <div class="gift-attendant">
+      <div class="attendant-icon">🎤</div>
+      <h3>Dorcas</h3>
+    </div>
+    <div class="gift-attendant">
+      <div class="attendant-icon">🎤</div>
+      <h3>Enoch</h3>
+    </div>
+  </div>
+  </section>
+
+   <!-- Bridal Party Moments Carousel -->
+<section class="section bridal-carousel">
+    <h2>Bridal Party Moments</h2>
+
+    <div class="carousel-wrapper" id="bridalCarousel">
+      <button class="carousel-btn prev" aria-label="Previous">‹</button>
+
+      <div class="carousel-track">
+        <img src="images/solomon.jpeg" alt="Bridal Party">
+        <img src="images/ella.jpeg" alt="Bridal Party">
+        <img src="images/eric.jpeg" alt="Best Man">
+        <img src="images/samuel.jpeg" alt="Groomsman">
+        <img src="images/pricilla.jpeg" alt="Bridal Party">
+        <img src="images/jerry.jpeg" alt="Groomsman">
+        <img src="images/korkor.jpeg" alt="Bridal Party">
+        <img src="images/Jeffery.jpeg" alt="Groomsman">
+        <img src="images/hannah.jpeg" alt="Bridal Party">
+        <img src="images/eric.jpeg" alt="Best Man">
+        <img src="images/dorcas.jpeg" alt="Bridal Party">
+        <img src="images/sammy.jpeg" alt="Best Man">
+        <img src="images/ella.jpeg" alt="Bridal Party">
+        <img src="images/nat.jpeg" alt="Bridal Party">
+        <img src="images/blessing.jpeg" alt="Groomsman">
+        
       </div>
-      <div class="mc-card">
-        <div class="mc-photo">
-          <img src="images/mc2.jpg" alt="Master of Ceremony 2">
-        </div>
-        <h3>Enoch</h3>
-        <p>Master of Ceremony</p>
-      </div>
+
+      <button class="carousel-btn next" aria-label="Next">›</button>
     </div>
   </section>
 
@@ -2067,6 +2375,98 @@ setTimeout(() => {
 galleryGrid.addEventListener("mouseenter", () => isPaused = true);
 galleryGrid.addEventListener("mouseleave", () => isPaused = false);
 galleryGrid.addEventListener("click", () => isPaused = true);
+
+
+const bridalCarousel = document.getElementById('bridalCarousel');
+    const track = bridalCarousel.querySelector('.carousel-track');
+    const sldes = Array.from(track.children);
+    const slideWidth = sldes[0].getBoundingClientRect().width + 19.2;
+    let ci = 0;
+    let autoPlayInterval;
+
+    // Duplicate slides for seamless infinite scroll (optional but smoother)
+    sldes.forEach(slide => {
+      const clone = slide.cloneNode(true);
+      track.appendChild(clone);
+    });
+
+    function moveToSlide(index) {
+      track.style.transform = `translateX(-${index * slideWidth}px)`;
+      ci = index;
+    }
+
+    function nextSlide() {
+      ci++;
+      moveToSlide(ci);
+
+      // Reset to beginning seamlessly when we reach the cloned set
+      if (ci >= sldes.length) {
+        setTimeout(() => {
+          track.style.transition = 'none';
+          ci = 0;
+          moveToSlide(0);
+          // Force reflow
+          void track.offsetHeight;
+          track.style.transition = 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+        }, 600);
+      }
+    }
+
+    function prevSlide() {
+      if (ci === 0) {
+        // Jump to the end (cloned slides) instantly
+        track.style.transition = 'none';
+        ci = sldes.length;
+        moveToSlide(ci);
+        void track.offsetHeight;
+        track.style.transition = 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+      }
+      ci--;
+      moveToSlide(ci);
+    }
+
+    // Auto-play
+    function startAutoPlay() {
+      autoPlayInterval = setInterval(nextSlide, 4000); // Change slide every 4 seconds
+    }
+
+    function stopAutoPlay() {
+      clearInterval(autoPlayInterval);
+    }
+
+    // Button controls
+    bridalCarousel.querySelector('.next').addEventListener('click', () => {
+      stopAutoPlay();
+      nextSlide();
+      startAutoPlay(); // resume
+    });
+
+    bridalCarousel.querySelector('.prev').addEventListener('click', () => {
+      stopAutoPlay();
+      prevSlide();
+      startAutoPlay();
+    });
+
+    // Pause on hover
+    bridalCarousel.addEventListener('mouseenter', stopAutoPlay);
+    bridalCarousel.addEventListener('mouseleave', startAutoPlay);
+
+    // Start autoplay on load
+    startAutoPlay();
+
+    // Touch/swipe support (basic)
+    let touchStartX = 0;
+    bridalCarousel.addEventListener('touchstart', e => {
+      touchStartX = e.changedTouches[0].screenX;
+      stopAutoPlay();
+    });
+
+    bridalCarousel.addEventListener('touchend', e => {
+      const touchEndX = e.changedTouches[0].screenX;
+      if (touchStartX - touchEndX > 50) nextSlide();
+      if (touchEndX - touchStartX > 50) prevSlide();
+      startAutoPlay();
+    });
 
 
   </script>
