@@ -1,11 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pious & Getrude</title>
-  <link rel="stylesheet" href="css/style.css">
   <style>
     * {
       margin: 0;
@@ -30,11 +28,8 @@
       background: var(--beige-light);
       color: #3a3a3a;
       overflow-x: hidden;
-      margin: 0;
-      padding: 0;
     }
 
-    /* Hero Section */
     .hero {
       position: relative;
       height: 100vh;
@@ -46,46 +41,33 @@
 
     .hero-carousel {
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 0;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
     }
 
     .hero-slide {
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      opacity: 0;
-      transition: opacity 2s ease-in-out;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
       background-size: cover;
       background-position: center;
+      opacity: 0;
+      transition: opacity 2s ease-in-out;
     }
 
-    .hero-slide.active {
-      opacity: 1;
-    }
+    .hero-slide.active { opacity: 1; }
 
     .hero-slide::after {
       content: '';
       position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
+      inset: 0;
       background: linear-gradient(135deg, rgba(92, 0, 23, 0.5), rgba(128, 0, 32, 0.4));
     }
 
     .hero::before {
       content: '';
       position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
+      inset: 0;
       background: radial-gradient(circle at 30% 50%, rgba(135, 168, 120, 0.2), transparent 50%),
                   radial-gradient(circle at 70% 50%, rgba(232, 220, 196, 0.15), transparent 50%);
       animation: pulse 8s ease-in-out infinite;
@@ -106,14 +88,8 @@
     }
 
     @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     .hero h1 {
@@ -121,7 +97,7 @@
       font-weight: 300;
       letter-spacing: 0.1em;
       color: var(--beige-light);
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
       margin-bottom: 1rem;
       animation: shimmer 3s ease-in-out infinite;
     }
@@ -136,7 +112,6 @@
       color: var(--beige);
       font-style: italic;
       margin-bottom: 2rem;
-      animation: fadeInUp 1s ease-out 0.3s both;
     }
 
     .scroll-indicator {
@@ -170,7 +145,6 @@
       50% { transform: translateX(-50%) translateY(10px); }
     }
 
-    /* Navigation */
     .nav {
       position: sticky;
       top: 0;
@@ -203,7 +177,6 @@
       background: rgba(135, 168, 120, 0.2);
     }
 
-    /* Sections */
     .section {
       padding: 5rem 2rem;
       max-width: 1200px;
@@ -232,7 +205,6 @@
       background: linear-gradient(90deg, var(--burgundy), var(--sage), var(--burgundy));
     }
 
-    /* --- MODERN TIMELINE REDESIGN --- */
     .timeline {
       position: relative;
       max-width: 1000px;
@@ -258,13 +230,11 @@
       position: relative;
       background: transparent;
       width: 50%;
-      border: none;
-      box-shadow: none;
       margin-bottom: 30px;
       opacity: 0;
       transform: translateY(40px);
       transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
-       will-change: transform, opacity;
+      will-change: transform, opacity;
     }
 
     .event.visible {
@@ -337,20 +307,6 @@
       opacity: 0.9;
     }
 
-    .event .time {
-      display: inline-block;
-      background: rgba(128, 0, 32, 0.08);
-      color: var(--burgundy);
-      padding: 0.5rem 1.2rem;
-      border-radius: 50px;
-      font-size: 0.9rem;
-      font-weight: 700;
-      margin-bottom: 1rem;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      border: 1px solid rgba(128, 0, 32, 0.1);
-    }
-
     .event h3 {
       font-family: 'Georgia', serif;
       font-size: 1.6rem;
@@ -358,13 +314,6 @@
       margin-bottom: 0.8rem;
     }
 
-    .event p {
-      color: #555;
-      font-size: 1rem;
-      line-height: 1.6;
-    }
-
-    /* Ministers Styles - NO PHOTOS */
     .ministers-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -425,145 +374,76 @@
       font-size: 0.95rem;
     }
 
-    /* Bridal Party – Refined Compact Cards */
     .bridal-party-cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 1.5rem;
-    max-width: 1000px;
-    margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+      max-width: 1000px;
+      margin: 0 auto;
     }
 
     .bridal-pair-card {
-    background: white;
-    border-radius: 18px;
-    padding: 1.4rem 1.5rem;
-    border: 1.5px solid var(--beige);
-    text-align: center;
-    position: relative;
-    transition: all 0.35s ease;
+      background: white;
+      border-radius: 18px;
+      padding: 1.4rem 1.5rem;
+      border: 1.5px solid var(--beige);
+      text-align: center;
+      position: relative;
+      transition: all 0.35s ease;
     }
 
     .bridal-pair-card::before {
-    content: '🤍';
-    position: absolute;
-    top: 0.8rem;
-    right: 0.9rem;
-    font-size: 1.4rem;
-    opacity: 0.25;
+      content: '🤍';
+      position: absolute;
+      top: 0.8rem;
+      right: 0.9rem;
+      font-size: 1.4rem;
+      opacity: 0.25;
     }
 
     .bridal-pair-card.featured {
-    border: 2px solid var(--burgundy-light);
-    background: linear-gradient(
-        135deg,
-        rgba(128, 0, 32, 0.04),
-        rgba(135, 168, 120, 0.06)
-    );
+      border: 2px solid var(--burgundy-light);
+      background: linear-gradient(135deg, rgba(128, 0, 32, 0.04), rgba(135, 168, 120, 0.06));
     }
 
     .bridal-pair-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 28px rgba(128, 0, 32, 0.15);
+      transform: translateY(-5px);
+      box-shadow: 0 10px 28px rgba(128, 0, 32, 0.15);
     }
 
     .pair-role {
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: var(--burgundy-dark);
-    margin-bottom: 0.6rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--burgundy-dark);
+      margin-bottom: 0.6rem;
     }
 
     .pair-names {
-    display: grid;
-    grid-template-columns: 1fr auto 1fr;
-    align-items: center;
-    gap: 0.6rem;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      gap: 0.6rem;
     }
 
     .pair-divider {
-    font-size: 1.1rem;
-    opacity: 0.5;
+      font-size: 1.1rem;
+      opacity: 0.5;
     }
 
     .pair-member h3 {
-    font-size: 1.05rem;
-    color: var(--burgundy-dark);
-    margin-bottom: 0.15rem;
+      font-size: 1.05rem;
+      color: var(--burgundy-dark);
+      margin-bottom: 0.15rem;
     }
 
     .role {
-    font-style: italic;
-    font-size: 0.8rem;
+      font-style: italic;
+      font-size: 0.8rem;
     }
 
-    .role.bridesmaid {
-    color: var(--burgundy);
-    }
+    .role.bridesmaid { color: var(--burgundy); }
+    .role.groomsman { color: var(--sage-dark); }
 
-    .role.groomsman {
-    color: var(--sage-dark);
-    }
-
-    /* Bridal Party Carousel */
-        .bridal-carousel {
-        background: linear-gradient(
-            135deg,
-            rgba(232, 220, 196, 0.35),
-            rgba(135, 168, 120, 0.12)
-        );
-        }
-
-        .carousel-wrapper {
-        position: relative;
-        max-width: 1000px;
-        margin: 0 auto;
-        overflow: hidden;
-        }
-
-        .carousel-track {
-        display: flex;
-        gap: 1.2rem;
-        transition: transform 0.45s ease;
-        }
-
-        .carousel-track img {
-        width: 260px;
-        height: 320px;
-        object-fit: cover;
-        border-radius: 18px;
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-        }
-
-        .carousel-btn {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        background: white;
-        border: none;
-        width: 42px;
-        height: 42px;
-        border-radius: 50%;
-        font-size: 1.5rem;
-        cursor: pointer;
-        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
-        z-index: 5;
-        }
-
-        .carousel-btn.prev {
-        left: -10px;
-        }
-
-        .carousel-btn.next {
-        right: -10px;
-        }
-
-        .carousel-btn:hover {
-        background: var(--burgundy);
-        color: white;
-        }
-
-    /* Photography List */
     .photography-list {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -610,258 +490,73 @@
       font-weight: 500;
     }
 
-    /* Gallery & Memories Grid */
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1.5rem;
-    }
-
-    .gallery-item {
+    .carousel-wrapper {
       position: relative;
-      aspect-ratio: 1;
-      border-radius: 20px;
-      overflow: hidden;
-      cursor: pointer;
-      background: linear-gradient(135deg, var(--sage-light), var(--beige));
-      border: 3px solid var(--burgundy-light);
-      transition: transform 0.3s ease, z-index 0.3s ease, opacity 0.6s ease;
-      z-index: 1;
-    }
-
-    .gallery-item:hover {
-      transform: scale(1.05);
-      border-color: var(--sage);
-      z-index: 10;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-    }   
-
-    .gallery-item img, .gallery-item video {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: 50% 25%; 
-      display: block;
-      transition: transform 0.3s ease;
-    }
-    
-    .gallery-item:hover img, .gallery-item:hover video {
-      transform: scale(1.1);
-    }
-
-    .gallery-item.is-swapping {
-      animation: elegantSwap 1.4s cubic-bezier(0.25,1,0.5,1);
-    }
-
-    @keyframes elegantSwap {
-      0% {
-        opacity: 1;
-        transform: scale(1) rotate(0deg);
-      }
-      25% {
-        opacity: 0.7;
-        transform: scale(0.95) rotate(-2deg);
-      }
-      50% {
-        opacity: 0.5;
-        transform: scale(0.9) rotate(2deg);
-      }
-      75% {
-        opacity: 0.7;
-        transform: scale(0.95) rotate(-1deg);
-      }
-      100% {
-        opacity: 1;
-        transform: scale(1) rotate(0deg);
-      }
-    }
-
-    /* Video Indicator Overlay */
-    .video-indicator {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      font-size: 3rem;
-      color: white;
-      opacity: 0.8;
-      pointer-events: none;
-      text-shadow: 0 2px 5px rgba(0,0,0,0.5);
-      z-index: 2;
-    }
-
-    /* Bridal Party Styles */
-    .bridal-party-container {
-      max-width: 1200px;
+      max-width: 1000px;
       margin: 0 auto;
+      overflow: hidden;
+      border-radius: 20px;
+    }
+
+    .carousel-track {
       display: flex;
-      flex-direction: column;
-      gap: 3rem;
+      gap: 1.2rem;
+      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      will-change: transform;
     }
 
-    .party-pair {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2rem;
-      align-items: center;
-      position: relative;
-      padding: 2rem;
-      background: linear-gradient(135deg, rgba(232, 220, 196, 0.3), rgba(135, 168, 120, 0.15));
-      border-radius: 25px;
-      border: 2px solid transparent;
-      transition: all 0.4s ease;
+    .carousel-track img {
+      width: 260px;
+      height: 320px;
+      object-fit: cover;
+      border-radius: 18px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+      flex-shrink: 0;
     }
 
-    .party-pair::before {
-      content: '💕';
+    .carousel-btn {
       position: absolute;
       top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      font-size: 2rem;
-      background: white;
-      width: 60px;
-      height: 60px;
+      transform: translateY(-50%);
+      background: rgba(255, 255, 255, 0.65);
+      backdrop-filter: blur(10px);
+      border: 2px solid rgba(232, 220, 196, 0.4);
+      width: 56px;
+      height: 56px;
       border-radius: 50%;
+      font-size: 1.9rem;
+      cursor: pointer;
+      box-shadow: 0 8px 25px rgba(128, 0, 32, 0.12);
+      z-index: 10;
+      transition: all 0.4s ease;
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 5px 20px rgba(128, 0, 32, 0.2);
-      border: 3px solid var(--burgundy-light);
-      z-index: 10;
+      color: var(--burgundy);
+      animation: gentlePulse 4s ease-in-out infinite;
     }
 
-    .party-pair:hover {
-      border-color: var(--sage-light);
-      box-shadow: 0 10px 40px rgba(135, 168, 120, 0.2);
-      transform: translateY(-5px);
-    }
-
-    .party-member {
-      text-align: center;
-      transition: transform 0.3s ease;
-    }
-
-    .party-member:hover {
-      transform: scale(1.05);
-    }
-
-    .member-photo {
-      width: 200px;
-      height: 200px;
-      margin: 0 auto 1.5rem;
-      border-radius: 50%;
-      overflow: hidden;
-      border: 4px solid var(--burgundy-light);
-      box-shadow: 0 8px 25px rgba(128, 0, 32, 0.25);
-      position: relative;
-      transition: all 0.3s ease;
-    }
-
-    .bridesmaid .member-photo {
+    .carousel-btn:hover {
+      background: rgba(255, 255, 255, 0.95);
       border-color: var(--burgundy-light);
+      transform: translateY(-50%) scale(1.18);
+      box-shadow: 0 15px 40px rgba(128, 0, 32, 0.2);
+      animation: none;
     }
 
-    .groomsman .member-photo {
-      border-color: var(--sage);
+    @keyframes gentlePulse {
+      0%, 100% { opacity: 0.7; }
+      50% { opacity: 1; }
     }
 
-    .member-photo:hover {
-      box-shadow: 0 12px 35px rgba(128, 0, 32, 0.35);
-      transform: scale(1.1);
+    .carousel-btn.prev { left: 15px; }
+    .carousel-btn.next { right: 15px; }
+
+    #coupleCarousel .carousel-track img {
+      width: 300px;
+      height: 360px;
     }
 
-    .member-photo img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .party-member h3 {
-      font-size: 1.4rem;
-      color: var(--burgundy-dark);
-      margin-bottom: 0.5rem;
-      font-weight: 500;
-    }
-
-    .party-member p {
-      color: var(--sage-dark);
-      font-style: italic;
-      font-size: 1.1rem;
-    }
-
-    /* Master of Ceremony Styles */
-    .mc-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 3rem;
-      max-width: 800px;
-      margin: 0 auto;
-    }
-
-    .mc-card {
-      background: linear-gradient(135deg, rgba(232, 220, 196, 0.5), rgba(135, 168, 120, 0.2));
-      border: 3px solid var(--burgundy-light);
-      border-radius: 25px;
-      padding: 3rem 2rem;
-      text-align: center;
-      transition: all 0.4s ease;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .mc-card::before {
-      content: '🎤';
-      position: absolute;
-      top: 1rem;
-      right: 1rem;
-      font-size: 2rem;
-      opacity: 0.3;
-    }
-
-    .mc-card:hover {
-      transform: translateY(-10px) scale(1.02);
-      box-shadow: 0 20px 50px rgba(128, 0, 32, 0.2);
-      border-color: var(--sage);
-    }
-
-    .mc-photo {
-      width: 200px;
-      height: 200px;
-      margin: 0 auto 1.5rem;
-      border-radius: 50%;
-      overflow: hidden;
-      border: 5px solid var(--burgundy);
-      box-shadow: 0 10px 30px rgba(128, 0, 32, 0.3);
-      transition: all 0.3s ease;
-    }
-
-    .mc-photo:hover {
-      transform: scale(1.15);
-      box-shadow: 0 15px 40px rgba(128, 0, 32, 0.4);
-    }
-
-    .mc-photo img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .mc-card h3 {
-      font-size: 1.6rem;
-      color: var(--burgundy-dark);
-      margin-bottom: 0.5rem;
-      font-weight: 500;
-    }
-
-    .mc-card p {
-      color: var(--sage-dark);
-      font-size: 1.2rem;
-      font-style: italic;
-      font-weight: 600;
-    }
-
-    /* Gift Table Styles */
     .gift-table-container {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -902,7 +597,6 @@
       font-weight: 500;
     }
 
-    /* Upload Section */
     .upload-container {
       max-width: 800px;
       margin: 0 auto;
@@ -918,11 +612,9 @@
       flex-wrap: wrap;
     }
 
-    .upload-btn {
-      background: linear-gradient(135deg, var(--sage), var(--sage-light));
-      color: white;
-      border: none;
+    .upload-btn, .download-btn {
       padding: 1rem 2.5rem;
+      border: none;
       border-radius: 50px;
       font-size: 1.1rem;
       font-weight: bold;
@@ -935,94 +627,26 @@
       position: relative;
       overflow: hidden;
       letter-spacing: 0.5px;
+      color: white;
     }
 
-    .upload-btn::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-      transition: left 0.6s ease;
-    }
-
-    .upload-btn:hover::before {
-      left: 100%;
-    }
-
-    .upload-btn:hover {
-      transform: translateY(-5px) scale(1.05);
-      box-shadow: 0 15px 40px rgba(135, 168, 120, 0.5);
-      background: linear-gradient(135deg, var(--sage-dark), var(--sage));
-    }
-
-    .upload-btn:active {
-      transform: translateY(-2px) scale(1.02);
+    .upload-btn {
+      background: linear-gradient(135deg, var(--sage), var(--sage-light));
     }
 
     .download-btn {
       background: linear-gradient(135deg, var(--burgundy), var(--burgundy-light));
-      color: white;
-      border: none;
-      padding: 1rem 2.5rem;
-      border-radius: 50px;
-      font-size: 1.1rem;
-      font-weight: bold;
-      cursor: pointer;
-      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      box-shadow: 0 8px 25px rgba(128, 0, 32, 0.4);
-      display: inline-flex;
-      align-items: center;
-      gap: 0.7rem;
-      position: relative;
-      overflow: hidden;
-      letter-spacing: 0.5px;
     }
 
-    .download-btn::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-      transition: left 0.6s ease;
-    }
-
-    .download-btn:hover::before {
-      left: 100%;
-    }
-
-    .download-btn:hover {
+    .upload-btn:hover, .download-btn:hover {
       transform: translateY(-5px) scale(1.05);
       box-shadow: 0 15px 40px rgba(128, 0, 32, 0.5);
-      background: linear-gradient(135deg, var(--burgundy-light), var(--burgundy));
-    }
-
-    .download-btn:active {
-      transform: translateY(-2px) scale(1.02);
     }
 
     .download-btn:disabled {
       opacity: 0.6;
       cursor: not-allowed;
       transform: none;
-      box-shadow: 0 4px 15px rgba(128, 0, 32, 0.3);
-    }
-
-    .download-btn:disabled:hover {
-      transform: none;
-      box-shadow: 0 4px 15px rgba(128, 0, 32, 0.3);
-    }
-
-    .btn-icon {
-      font-size: 1.3rem;
-      display: inline-flex;
-      align-items: center;
-      filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
     }
 
     .upload-area {
@@ -1043,9 +667,7 @@
       box-shadow: 0 10px 30px rgba(135, 168, 120, 0.2);
     }
 
-    .upload-area input[type="file"] {
-      display: none;
-    }
+    .upload-area input[type="file"] { display: none; }
 
     .upload-icon {
       font-size: 3rem;
@@ -1053,28 +675,55 @@
       color: var(--burgundy);
     }
 
-    .upload-area p {
-      color: var(--burgundy-dark);
-      font-weight: 500;
+    .empty-state { display: block; }
+    .has-memories { display: none; }
+
+    .upload-container.has-content .empty-state { display: none; }
+    .upload-container.has-content .has-memories { display: flex; }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
     }
 
-    .empty-state {
-      display: block;
+    .gallery-item {
+      position: relative;
+      aspect-ratio: 1;
+      border-radius: 20px;
+      overflow: hidden;
+      cursor: pointer;
+      background: linear-gradient(135deg, var(--sage-light), var(--beige));
+      border: 3px solid var(--burgundy-light);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
-    .has-memories {
-      display: none;
+    .gallery-item:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
     }
 
-    .upload-container.has-content .empty-state {
-      display: none;
+    .gallery-item img, .gallery-item video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
     }
 
-    .upload-container.has-content .has-memories {
-      display: flex;
+    .gallery-item:hover img, .gallery-item:hover video { transform: scale(1.1); }
+
+    .video-indicator {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 3rem;
+      color: white;
+      opacity: 0.8;
+      pointer-events: none;
+      text-shadow: 0 2px 5px rgba(0,0,0,0.5);
+      z-index: 2;
     }
 
-    /* Guestbook */
     .guestbook-container {
       max-width: 800px;
       margin: 0 auto;
@@ -1101,10 +750,6 @@
       transition: all 0.3s ease;
     }
 
-    input::placeholder, textarea::placeholder {
-      color: #8a8a8a;
-    }
-
     input:focus, textarea:focus {
       outline: none;
       border-color: var(--burgundy);
@@ -1112,10 +757,7 @@
       background: white;
     }
 
-    textarea {
-      min-height: 120px;
-      resize: vertical;
-    }
+    textarea { min-height: 120px; resize: vertical; }
 
     button {
       background: linear-gradient(135deg, var(--burgundy), var(--burgundy-light));
@@ -1134,11 +776,6 @@
     button:hover {
       transform: translateY(-2px);
       box-shadow: 0 10px 30px rgba(128, 0, 32, 0.4);
-      background: linear-gradient(135deg, var(--burgundy-light), var(--burgundy));
-    }
-
-    button:active {
-      transform: translateY(0);
     }
 
     #messages {
@@ -1156,38 +793,17 @@
     }
 
     @keyframes slideIn {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
-    .message-card strong {
-      color: var(--burgundy);
-      font-size: 1.1rem;
-    }
-
-    .message-card p {
-      color: #4a4a4a;
-      margin-top: 0.5rem;
-      line-height: 1.6;
-    }
-
-    /* Image/Video Preview Modal */
     .modal {
       display: none;
       position: fixed;
       z-index: 1000;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
+      left: 0; top: 0;
+      width: 100%; height: 100%;
       background: rgba(0, 0, 0, 0.95);
-      animation: fadeIn 0.3s ease;
     }
 
     .modal.active {
@@ -1196,29 +812,12 @@
       justify-content: center;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
     .modal-content {
       max-width: 90%;
       max-height: 90%;
       object-fit: contain;
-      animation: zoomIn 0.3s ease;
       border-radius: 10px;
       box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-    }
-
-    @keyframes zoomIn {
-      from {
-        transform: scale(0.8);
-        opacity: 0;
-      }
-      to {
-        transform: scale(1);
-        opacity: 1;
-      }
     }
 
     .modal-close {
@@ -1268,216 +867,35 @@
       transform: translateY(-50%) scale(1.1);
     }
 
-    .modal-prev {
-      left: 2rem;
-    }
+    .modal-prev { left: 2rem; }
+    .modal-next { right: 2rem; }
 
-    .modal-next {
-      right: 2rem;
-    }
-
-    /* Footer */
     footer {
       text-align: center;
       padding: 3rem 2rem;
       background: linear-gradient(135deg, var(--burgundy-dark), var(--burgundy));
       border-top: 3px solid var(--sage);
-      margin: 0;
-      width: 100%;
     }
 
     footer p {
       color: var(--beige-light);
       font-size: 1.1rem;
-      margin: 0;
-      padding: 0;
-    }
-    
-    footer p:last-child {
-      margin-top: 1rem;
     }
 
-    html {
-      margin: 0;
-      padding: 0;
-    }
-
-    /* Responsive */
     @media (max-width: 768px) {
-      .section {
-        padding: 3rem 1rem;
-      }
-
-      .timeline::after {
-        left: 30px;
-      }
-      
-      .event {
-        width: 100%;
-        padding-left: 70px;
-        padding-right: 20px;
-        margin-bottom: 20px;
-      }
-      
-      .event:nth-child(odd), 
-      .event:nth-child(even) {
-        left: 0;
-        text-align: left;
-      }
-      
-      .event:nth-child(odd)::after, 
-      .event:nth-child(even)::after {
-        left: 18px;
-        right: auto;
-      }
-      
-      .event-content {
-        padding: 1.5rem;
-      }
-
-      .nav ul {
-        padding: 1rem;
-      }
-
-      .nav a {
-        padding: 0.4rem 1rem;
-        font-size: 0.9rem;
-      }
-
-      .gallery-grid {
-        position: relative;
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      }
-
-      .modal-nav, .modal-close {
-        width: 50px;
-        height: 50px;
-        font-size: 2rem;
-      }
-
-      .modal-prev { left: 1rem; }
-      .modal-next { right: 1rem; }
-      .modal-close { top: 1rem; right: 1rem; }
-
-      .party-pair {
-        grid-template-columns: 1fr;
-        gap: 3rem;
-        padding: 2rem 1rem;
-      }
-
-      .party-pair::before {
-        top: calc(50% - 30px);
-      }
-
-      .member-photo {
-        width: 150px;
-        height: 150px;
-      }
-
-      .mc-container {
-        gap: 2rem;
-      }
-
-      .mc-photo {
-        width: 150px;
-        height: 150px;
-        object-fit: top;
-        object-position: 50% 25%;
-      }
-    }
-    .bridal-carousel {
-      background: linear-gradient(135deg, rgba(232, 220, 196, 0.35), rgba(135, 168, 120, 0.12));
-      padding: 4rem 0;
-    }
-
-    .carousel-wrapper {
-      position: relative;
-      max-width: 1000px;
-      margin: 0 auto;
-      overflow: hidden;
-      border-radius: 20px;
-    }
-
-    .carousel-track {
-      display: flex;
-      gap: 1.2rem;
-      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-      will-change: transform;
-    }
-
-    .carousel-track img {
-      width: 260px;
-      height: 320px;
-      object-fit: cover;
-      border-radius: 18px;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-      flex-shrink: 0;
-    }
-
-.carousel-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(255, 255, 255, 0.65);     /* faint white */
-  backdrop-filter: blur(10px);               /* frosted glass effect */
-  border: 2px solid rgba(232, 220, 196, 0.4); /* soft beige border */
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  font-size: 1.9rem;
-  cursor: pointer;
-  box-shadow: 0 8px 25px rgba(128, 0, 32, 0.12);
-  z-index: 10;
-  transition: all 0.4s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--burgundy);
-}
-
-/* Subtle hover — becomes more visible instead of aggressive */
-.carousel-btn:hover {
-  background: rgba(255, 255, 255, 0.95);
-  border-color: var(--burgundy-light);
-  color: var(--burgundy);
-  transform: translateY(-50%) scale(1.18);
-  box-shadow: 0 15px 40px rgba(128, 0, 32, 0.2);
-}
-
-/* Optional: tiny pulse when idle so guests know it’s clickable */
-@keyframes gentlePulse {
-  0%, 100% { opacity: 0.7; }
-  50% { opacity: 1; }
-}
-.carousel-btn {
-  animation: gentlePulse 4s ease-in-out infinite;
-}
-.carousel-btn:hover {
-  animation: none;
-}
-
-/* Mobile */
-@media (max-width: 768px) {
-  .carousel-btn {
-    width: 50px;
-    height: 50px;
-    font-size: 1.7rem;
-  }
-}
-
-    .carousel-btn.prev { left: 15px; }
-    .carousel-btn.next { right: 15px; }
-
-    /* Responsive adjustment */
-    @media (max-width: 768px) {
+      .section { padding: 3rem 1rem; }
+      .timeline::after { left: 30px; }
+      .event { width: 100%; padding-left: 70px; padding-right: 20px; }
+      .event:nth-child(odd), .event:nth-child(even) { left: 0; text-align: left; }
+      .event:nth-child(odd)::after, .event:nth-child(even)::after { left: 18px; right: auto; }
       .carousel-track img { width: 220px; height: 280px; }
-      .carousel-btn { width: 40px; height: 40px; font-size: 1.5rem; }
+      .carousel-btn { width: 50px; height: 50px; font-size: 1.7rem; }
+      #coupleCarousel .carousel-track img { width: 260px; height: 320px; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Hero Section -->
   <header class="hero">
     <div class="hero-carousel" id="heroCarousel">
       <div class="hero-slide active" style="background-image: url('https://images.unsplash.com/photo-1519741497674-611481863552?w=1600');"></div>
@@ -1492,7 +910,6 @@
     <div class="scroll-indicator" id="scrollArrow">⬇</div>
   </header>
 
-  <!-- Navigation -->
   <nav class="nav">
     <ul>
       <li><a href="#program">Program</a></li>
@@ -1503,278 +920,121 @@
       <li><a href="#photography">Photography</a></li>
       <li><a href="#gallery">Gallery</a></li>
       <li><a href="#memories">Memories</a></li>
-      <li><a href="#guestbook">Guestbook</a></li>
+      <li><a href="#guestbook">GuestMessage</a></li>
     </ul>
   </nav>
 
- <!-- Program Section -->
-    <section id="program" class="section">
+  <section id="program" class="section">
     <h2>Programme Outline</h2>
-
     <div class="timeline">
-
-        <div class="event">
-        <h3>Groom Arrives</h3>
-        </div>
-
-        <div class="event">
-        <h3>Bride Arrives</h3>
-        </div>
-
-        <div class="event">
-        <h3>Service Starts</h3>
-        </div>
-
-        <div class="event">
-        <h3>Opening Prayer</h3>
-        </div>
-
-        <div class="event">
-        <h3>Praises & Worship</h3>
-        </div>
-
-        <div class="event">
-        <h3>Procession</h3>
-        </div>
-
-        <div class="event">
-        <h3>Marriage Officiation</h3>
-        </div>
-
-        <div class="event">
-        <h3>Prayers for the Couple</h3>
-        </div>
-
-        <div class="event">
-        <h3>Signing of Marriage Certificate</h3>
-        </div>
-
-        <div class="event">
-        <h3>Praises & Worship</h3>
-        </div>
-
-        <div class="event">
-        <h3>Song Ministration</h3>
-        </div>
-
-        <div class="event">
-        <h3>Preaching</h3>
-        </div>
-
-        <div class="event">
-        <h3>Presentation of Certificates</h3>
-        </div>
-
-        <div class="event">
-        <h3>Couple’s First Communion</h3>
-        </div>
-
-        <div class="event">
-        <h3>Announcements & Closing Prayer</h3>
-        </div>
-
-        <div class="event">
-        <h3>Recession</h3>
-        </div>
-
+      <div class="event"><h3>Arrival of Guest</h3></div>
+      <div class="event"><h3>Musical Interlude</h3></div>
+      <div class="event"><h3>Praise & Worship</h3></div>
+      <div class="event"><h3>Bridal Procession</h3></div>
+      <div class="event"><h3>Exchange of Vows & Rings</h3></div>
+      <div class="event"><h3>Signing of Marriage Certificate</h3></div>
+      <div class="event"><h3>Offering</h3></div>
+      <div class="event"><h3>Sermon</h3></div>
+      <div class="event"><h3>Introduction of Couple</h3></div>
+      <div class="event"><h3>Holy Communion</h3></div>
+      <div class="event"><h3>Benediction</h3></div>
+      <div class="event"><h3>Wedding March</h3></div>
     </div>
-    </section>
+  </section>
 
-  <!-- Photography Order Section -->
   <section id="photography" class="section">
     <h2>Order of Photography</h2>
     <div class="photography-list">
-      <div class="photo-group">
-        <div class="photo-number">0</div>
-        <div class="photo-item">Officiating ministers</div>
-      </div>
-      <div class="photo-group">
-        <div class="photo-number">1</div>
-        <div class="photo-item">Counsellors</div>
-      </div>
-      <div class="photo-group">
-        <div class="photo-number">2</div>
-        <div class="photo-item">Groom's Parent</div>
-      </div>
-      <div class="photo-group">
-        <div class="photo-number">3</div>
-        <div class="photo-item">Both Parents</div>
-      </div>
-      <div class="photo-group">
-        <div class="photo-number">4</div>
-        <div class="photo-item">Bride's Parent</div>
-      </div>
-      <div class="photo-group">
-        <div class="photo-number">5</div>
-        <div class="photo-item">Bride's Family</div>
-      </div>
-      <div class="photo-group">
-        <div class="photo-number">6</div>
-        <div class="photo-item">Both Family</div>
-      </div>
-      <div class="photo-group">
-        <div class="photo-number">7</div>
-        <div class="photo-item">Groom's family</div>
-      </div>
-      <div class="photo-group">
-        <div class="photo-number">8</div>
-        <div class="photo-item">Bridal Party</div>
-      </div>
-      <div class="photo-group">
-        <div class="photo-number">9</div>
-        <div class="photo-item">2nd Generation Coleman and Koomson</div>
-      </div>
-      <div class="photo-group">
-        <div class="photo-number">10</div>
-        <div class="photo-item">Zipline</div>
-      </div>
-      <div class="photo-group">
-        <div class="photo-number">11</div>
-        <div class="photo-item">Community Hospital</div>
-      </div>
-      <div class="photo-group">
-        <div class="photo-number">12</div>
-        <div class="photo-item">Jopizo pharmacy</div>
-      </div>
-      <div class="photo-group">
-        <div class="photo-number">13</div>
-        <div class="photo-item">GPHA nurses</div>
-      </div>
-      <div class="photo-group">
-        <div class="photo-number">14</div>
-        <div class="photo-item">Perez Chapel Zoeland</div>
-      </div>
-      <div class="photo-group">
-        <div class="photo-number">15</div>
-        <div class="photo-item">Christian Gospel Church</div>
-      </div>
-      <div class="photo-group">
-        <div class="photo-number">16</div>
-        <div class="photo-item">King's Temple</div>
-      </div>
-      <div class="photo-group">
-        <div class="photo-number">17</div>
-        <div class="photo-item">Omega Generation Teens</div>
-      </div>
-      <div class="photo-group">
-        <div class="photo-number">18</div>
-        <div class="photo-item">KNUST</div>
-      </div>
-      <div class="photo-group">
-        <div class="photo-number">19</div>
-        <div class="photo-item">Pentecost University</div>
-      </div>
-      <div class="photo-group">
-        <div class="photo-number">20</div>
-        <div class="photo-item">The Nest</div>
-      </div>
-      <div class="photo-group">
-        <div class="photo-number">21</div>
-        <div class="photo-item">Ghana National College</div>
-      </div>
-      <div class="photo-group">
-        <div class="photo-number">22</div>
-        <div class="photo-item">Friends of the bride</div>
-      </div>
-      <div class="photo-group">
-        <div class="photo-number">23</div>
-        <div class="photo-item">Friends of the groom</div>
-      </div>
+      <div class="photo-group"><div class="photo-number">0</div><div class="photo-item">Officiating ministers</div></div>
+      <div class="photo-group"><div class="photo-number">1</div><div class="photo-item">Counsellors</div></div>
+      <div class="photo-group"><div class="photo-number">2</div><div class="photo-item">Groom's Parent</div></div>
+      <div class="photo-group"><div class="photo-number">3</div><div class="photo-item">Both Parents</div></div>
+      <div class="photo-group"><div class="photo-number">4</div><div class="photo-item">Bride's Parent</div></div>
+      <div class="photo-group"><div class="photo-number">5</div><div class="photo-item">Bride's Family</div></div>
+      <div class="photo-group"><div class="photo-number">6</div><div class="photo-item">Both Family</div></div>
+      <div class="photo-group"><div class="photo-number">7</div><div class="photo-item">Groom's family</div></div>
+      <div class="photo-group"><div class="photo-number">8</div><div class="photo-item">Bridal Party</div></div>
+      <div class="photo-group"><div class="photo-number">9</div><div class="photo-item">2nd Generation Coleman and Koomson</div></div>
+      <div class="photo-group"><div class="photo-number">10</div><div class="photo-item">Zipline</div></div>
+      <div class="photo-group"><div class="photo-number">11</div><div class="photo-item">Community Hospital</div></div>
+      <div class="photo-group"><div class="photo-number">12</div><div class="photo-item">Jopizo pharmacy</div></div>
+      <div class="photo-group"><div class="photo-number">13</div><div class="photo-item">GPHA nurses</div></div>
+      <div class="photo-group"><div class="photo-number">14</div><div class="photo-item">Perez Chapel Zoeland</div></div>
+      <div class="photo-group"><div class="photo-number">15</div><div class="photo-item">Christian Gospel Church</div></div>
+      <div class="photo-group"><div class="photo-number">16</div><div class="photo-item">King's Temple</div></div>
+      <div class="photo-group"><div class="photo-number">17</div><div class="photo-item">Omega Generation Teens</div></div>
+      <div class="photo-group"><div class="photo-number">18</div><div class="photo-item">KNUST</div></div>
+      <div class="photo-group"><div class="photo-number">19</div><div class="photo-item">Pentecost University</div></div>
+      <div class="photo-group"><div class="photo-number">20</div><div class="photo-item">The Nest</div></div>
+      <div class="photo-group"><div class="photo-number">21</div><div class="photo-item">Ghana National College</div></div>
+      <div class="photo-group"><div class="photo-number">22</div><div class="photo-item">Friends of the bride</div></div>
+      <div class="photo-group"><div class="photo-number">23</div><div class="photo-item">Friends of the groom</div></div>
     </div>
   </section>
 
-   <!-- Gallery Section -->
   <section id="gallery" class="section">
     <h2>Couple Gallery</h2>
-    <div class="gallery-grid" id="galleryGrid">
-      <div class="gallery-item" data-index="0">
+    <div class="carousel-wrapper" id="coupleCarousel">
+      <button class="carousel-btn prev" aria-label="Previous">‹</button>
+      <div class="carousel-track">
         <img src="images/pious-getty11.png" alt="Wedding Photo 1">
-      </div>
-      <div class="gallery-item" data-index="1">
         <img src="images/pious-getty3.png" alt="Wedding Photo 2">
-      </div>
-      <div class="gallery-item" data-index="2">
         <img src="images/pious-getty9.png" alt="Wedding Photo 3">
-      </div>
-      <div class="gallery-item" data-index="3">
         <img src="images/pious-getty7.png" alt="Wedding Photo 4">
-      </div>
-      <div class="gallery-item" data-index="4">
         <img src="images/pious-getty5.png" alt="Wedding Photo 5">
-      </div>
-      <div class="gallery-item" data-index="5">
         <img src="images/pious-getty3.png" alt="Wedding Photo 6">
-      </div>
-      <div class="gallery-item" data-index="6">
         <img src="images/m1.jpg" alt="Wedding Photo 7">
-      </div>
-      <div class="gallery-item" data-index="7">
         <img src="images/m2.jpg" alt="Wedding Photo 8">
-      </div>
-      <div class="gallery-item" data-index="8">
         <img src="images/m3.jpg" alt="Wedding Photo 9">
-      </div>
-      <div class="gallery-item" data-index="9">
         <img src="images/m4.jpg" alt="Wedding Photo 10">
-      </div>
-      <div class="gallery-item" data-index="10">
         <img src="images/m5.jpg" alt="Wedding Photo 11">
       </div>
+      <button class="carousel-btn next" aria-label="Next">›</button>
     </div>
   </section>
 
-  <!-- Officiating Ministers Section -->
   <section id="ministers" class="section" style="background: linear-gradient(135deg, rgba(135, 168, 120, 0.08), rgba(232, 220, 196, 0.15));">
-    <h2>Officiating Ministers</h2>
+    <h2>Clegy</h2>
     <div class="ministers-grid">
       <div class="minister-card featured">
         <h3>Rev Alexander Botchwey</h3>
         <p class="minister-title">Head Pastor</p>
         <p class="minister-church">ICGC Kings Temple</p>
       </div>
-
       <div class="minister-card">
         <h3>Bishop Raymond Acquah</h3>
         <p class="minister-title">Presiding Bishop</p>
         <p class="minister-church">Perez Chapel International</p>
       </div>
-
       <div class="minister-card">
         <h3>Rev Mariline Dzifa Acquah</h3>
         <p class="minister-church">Perez Chapel Zoeland</p>
       </div>
-
       <div class="minister-card">
         <h3>Rev. Eric Ampiaw</h3>
         <p class="minister-title">District Pastor</p>
         <p class="minister-church">Assemblies of God, Gbawe/Awoshie</p>
       </div>
-
       <div class="minister-card">
         <h3>Rev. Samuel Oppong</h3>
         <p class="minister-church">ICGC Kings Temple</p>
       </div>
-
       <div class="minister-card">
         <h3>Rev. James Abbey</h3>
         <p class="minister-church">Perez Chapel Zoeland</p>
       </div>
-
       <div class="minister-card">
         <h3>Rev. George Crackson</h3>
         <p class="minister-church">ICGC Racecourse Assembly</p>
       </div>
-
       <div class="minister-card">
         <h3>Rev. Gyan Frimpong</h3>
         <p class="minister-church">Christian Gospel Church International</p>
       </div>
-
       <div class="minister-card">
         <h3>Father Paul Essibu</h3>
         <p class="minister-church">Catholic Church</p>
       </div>
-
       <div class="minister-card">
         <h3>Rev Frank Bioh</h3>
         <p class="minister-church">ICGC Watered Garden</p>
@@ -1782,243 +1042,130 @@
     </div>
   </section>
 
-<!-- Bridal Party Section -->
- <section id="bridal-party" class="section" style="background: linear-gradient(135deg, rgba(232,220,196,.4), rgba(135,168,120,.15));">
-  <h2>Bridal Party</h2>
-
-  <div class="bridal-party-cards">
-
-    <!-- Featured Pair: Maid of Honour & Best Man -->
-    <div class="bridal-pair-card featured">
-      <div class="pair-role">Maid of Honour & Best Man</div>
-
-      <div class="pair-names">
-        <div class="pair-member">
-          <h3>Blessing</h3>
-          <p class="role bridesmaid">Maid of Honour</p>
+  <section id="bridal-party" class="section" style="background: linear-gradient(135deg, rgba(232,220,196,.4), rgba(135,168,120,.15));">
+    <h2>Bridal Party</h2>
+    <div class="bridal-party-cards">
+      <div class="bridal-pair-card featured">
+        <div class="pair-role">Maid of Honour & Best Man</div>
+        <div class="pair-names">
+          <div class="pair-member">
+            <h3>Blessing</h3>
+            <p class="role bridesmaid">Maid of Honour</p>
+          </div>
+          <div class="pair-divider">💍</div>
+          <div class="pair-member">
+            <h3>Eric</h3>
+            <p class="role groomsman">Best Man</p>
+          </div>
         </div>
-
-        <div class="pair-divider">💍</div>
-
-        <div class="pair-member">
-          <h3>Eric</h3>
-          <p class="role groomsman">Best Man</p>
+      </div>
+      <div class="bridal-pair-card">
+        <div class="pair-names">
+          <div class="pair-member"><h3>Lilian</h3><p class="role bridesmaid">Bridesmaid</p></div>
+          <div class="pair-divider">💍</div>
+          <div class="pair-member"><h3>Jerry</h3><p class="role groomsman">Groomsman</p></div>
+        </div>
+      </div>
+      <div class="bridal-pair-card">
+        <div class="pair-names">
+          <div class="pair-member"><h3>Korkor</h3><p class="role bridesmaid">Bridesmaid</p></div>
+          <div class="pair-divider">💍</div>
+          <div class="pair-member"><h3>Solomon</h3><p class="role groomsman">Groomsman</p></div>
+        </div>
+      </div>
+      <div class="bridal-pair-card">
+        <div class="pair-names">
+          <div class="pair-member"><h3>Priscilla</h3><p class="role bridesmaid">Bridesmaid</p></div>
+          <div class="pair-divider">💍</div>
+          <div class="pair-member"><h3>Nathaniel</h3><p class="role groomsman">Groomsman</p></div>
+        </div>
+      </div>
+      <div class="bridal-pair-card">
+        <div class="pair-names">
+          <div class="pair-member"><h3>Hannah</h3><p class="role bridesmaid">Bridesmaid</p></div>
+          <div class="pair-divider">💍</div>
+          <div class="pair-member"><h3>Samuel O.</h3><p class="role groomsman">Groomsman</p></div>
+        </div>
+      </div>
+      <div class="bridal-pair-card">
+        <div class="pair-names">
+          <div class="pair-member"><h3>Bella</h3><p class="role bridesmaid">Bridesmaid</p></div>
+          <div class="pair-divider">💍</div>
+          <div class="pair-member"><h3>Jeffery</h3><p class="role groomsman">Groomsman</p></div>
+        </div>
+      </div>
+      <div class="bridal-pair-card">
+        <div class="pair-names">
+          <div class="pair-member"><h3>Sena</h3><p class="role bridesmaid">Bridesmaid</p></div>
+          <div class="pair-divider">💍</div>
+          <div class="pair-member"><h3>Benedict</h3><p class="role groomsman">Groomsman</p></div>
+        </div>
+      </div>
+      <div class="bridal-pair-card">
+        <div class="pair-names">
+          <div class="pair-member"><h3>Karen</h3><p class="role bridesmaid">Bridesmaid</p></div>
+          <div class="pair-divider">💍</div>
+          <div class="pair-member"><h3>Samuel A.</h3><p class="role groomsman">Groomsman</p></div>
         </div>
       </div>
     </div>
+  </section>
 
-    <!-- Pair 2 -->
-    <div class="bridal-pair-card">
-      <div class="pair-names">
-        <div class="pair-member">
-          <h3>Lilian</h3>
-          <p class="role bridesmaid">Bridesmaid</p>
-        </div>
-        <div class="pair-divider">💍</div>
-        <div class="pair-member">
-          <h3>Jerry</h3>
-          <p class="role groomsman">Groomsman</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Pair 3 -->
-    <div class="bridal-pair-card">
-      <div class="pair-names">
-        <div class="pair-member">
-          <h3>Korkor</h3>
-          <p class="role bridesmaid">Bridesmaid</p>
-        </div>
-        <div class="pair-divider">💍</div>
-        <div class="pair-member">
-          <h3>Solomon</h3>
-          <p class="role groomsman">Groomsman</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Pair 4 -->
-    <div class="bridal-pair-card">
-      <div class="pair-names">
-        <div class="pair-member">
-          <h3>Priscilla</h3>
-          <p class="role bridesmaid">Bridesmaid</p>
-        </div>
-        <div class="pair-divider">💍</div>
-        <div class="pair-member">
-          <h3>Nathaniel</h3>
-          <p class="role groomsman">Groomsman</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Pair 5 -->
-    <div class="bridal-pair-card">
-      <div class="pair-names">
-        <div class="pair-member">
-          <h3>Hannah</h3>
-          <p class="role bridesmaid">Bridesmaid</p>
-        </div>
-        <div class="pair-divider">💍</div>
-        <div class="pair-member">
-          <h3>Samuel O.</h3>
-          <p class="role groomsman">Groomsman</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Pairs 6–10 (ready for you to fill in remaining bridesmaids) -->
-    <div class="bridal-pair-card">
-      <div class="pair-names">
-        <div class="pair-member">
-          <h3>Bella</h3>
-          <p class="role bridesmaid">Bridesmaid</p>
-        </div>
-        <div class="pair-divider">💍</div>
-        <div class="pair-member">
-          <h3>Jeffery</h3>
-          <p class="role groomsman">Groomsman</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="bridal-pair-card">
-      <div class="pair-names">
-        <div class="pair-member">
-          <h3>Sena</h3>
-          <p class="role bridesmaid">Bridesmaid</p>
-        </div>
-        <div class="pair-divider">💍</div>
-        <div class="pair-member">
-          <h3>Benedict</h3>
-          <p class="role groomsman">Groomsman</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="bridal-pair-card">
-      <div class="pair-names">
-        <div class="pair-member">
-          <h3>Karen</h3>
-          <p class="role bridesmaid">Bridesmaid</p>
-        </div>
-        <div class="pair-divider">💍</div>
-        <div class="pair-member">
-          <h3>Samuel A.</h3>
-          <p class="role groomsman">Groomsman</p>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-  <!-- Image/Video Preview Modal -->
-  <div id="imageModal" class="modal">
-    <span class="modal-close" id="modalClose">&times;</span>
-    <span class="modal-nav modal-prev" id="modalPrev">&#10094;</span>
-    
-    <!-- Image Container -->
-    <img class="modal-content" id="modalImage" alt="Preview" style="display: none;">
-    
-    <!-- Video Container -->
-    <video class="modal-content" id="modalVideo" controls style="display: none;"></video>
-    
-    <span class="modal-nav modal-next" id="modalNext">&#10095;</span>
-  </div>
-
-    <!-- Gift Table Section -->
   <section id="gift-table" class="section" style="background: linear-gradient(135deg, rgba(128, 0, 32, 0.05), rgba(135, 168, 120, 0.08));">
-  <h2>Gift Table Attendants</h2>
-  
-  <div class="gift-table-container">
-    <div class="gift-attendant">
-      <div class="attendant-icon">🎁</div>
-      <h3>Emmanuella</h3>
+    <h2>Gift Table Attendants</h2>
+    <div class="gift-table-container">
+      <div class="gift-attendant">
+        <div class="attendant-icon">🎁</div>
+        <h3>Emmanuella</h3>
+      </div>
+      <div class="gift-attendant">
+        <div class="attendant-icon">🎁</div>
+        <h3>Victor</h3>
+      </div>
     </div>
-    <div class="gift-attendant">
-      <div class="attendant-icon">🎁</div>
-      <h3>Victor</h3>
+    <div style="max-width: 420px; margin: 3rem auto 0;">
+      <div class="gift-attendant" style="background: white; border-radius: 24px; padding: 2rem; text-align: center; box-shadow: 0 15px 35px rgba(128,0,32,0.12); border: 2px solid var(--beige); animation: float 4s ease-in-out infinite; position: relative; overflow: hidden;">
+        <div style="position: absolute; top: 0; left: 0; right: 0; height: 6px; background: linear-gradient(90deg, var(--burgundy), var(--sage-light));"></div>
+        <h3 style="margin: 0 0 0.5rem; font-size: 1.5rem; color: var(--burgundy-dark);">055 030 5117</h3>
+        <p style="margin: 0; color: var(--sage-dark); font-style: italic; font-weight: 500;">Getrude Koomson • MTN Mobile Money</p>
+      </div>
     </div>
-  </div>
-<div style="max-width: 420px; margin: 3rem auto 0;">
-    <div class="gift-attendant" style="
-      background: white;
-      border-radius: 24px;
-      padding: 2rem;
-      text-align: center;
-      box-shadow: 0 15px 35px rgba(128,0,32,0.12);
-      border: 2px solid var(--beige);
-      animation: float 4s ease-in-out infinite;
-      position: relative;
-      overflow: hidden;
-    ">
-      <div style="
-        position: absolute;
-        top: 0; left: 0; right: 0;
-        height: 6px;
-        background: linear-gradient(90deg, var(--burgundy), var(--sage-light));
-      "></div>
-      
-      <h3 style="
-        margin: 0 0 0.5rem;
-        font-size: 1.5rem;
-        color: var(--burgundy-dark);
-      ">054 030 5117</h3>
-      
-      <p style="
-        margin: 0;
-        color: var(--sage-dark);
-        font-style: italic;
-        font-weight: 500;
-      ">Getrude Koomson • MTN Mobile Money</p>
-    </div>
-  </div>
+    <p style="text-align: center; margin-top: 2rem; color: var(--burgundy-dark); font-style: italic; opacity: 0.9;">
+      Your love & blessings mean everything to us. Thank you!💝
+    </p>
+  </section>
 
-  <!-- Optional tiny thank-you line -->
-  <p style="
-    text-align: center;
-    margin-top: 2rem;
-    color: var(--burgundy-dark);
-    font-style: italic;
-    opacity: 0.9;
-  ">
-    Your love & blessings mean everything to us. Thank you! Heart with Ribbon
-  </p>
-</section>
-</section>
+  <section id="mc" class="section">
+    <h2>Masters of Ceremony</h2>
+    <div class="gift-table-container">
+      <div class="gift-attendant">
+        <div class="attendant-icon">🎤</div>
+        <h3>Dorcas</h3>
+      </div>
+      <div class="gift-attendant">
+        <div class="attendant-icon">🎤</div>
+        <h3>Enoch</h3>
+      </div>
+    </div>
+  </section>
 
-  <!-- Memories Section -->
   <section id="memories" class="section">
     <h2>Share Your Memories</h2>
     <div class="upload-container" id="uploadContainer">
-      
-      <!-- Empty State: Large Upload Area -->
       <label for="fileUpload" class="upload-area empty-state">
         <div class="upload-icon">📤</div>
         <p>Click to upload photos or videos</p>
         <p style="color: #8a8a8a; font-size: 0.9rem; margin-top: 0.5rem;">Drag and drop or click to select files</p>
         <input type="file" id="fileUpload" multiple accept="image/*,video/*" />
       </label>
-
-      <!-- Has Memories State: Buttons at Top -->
       <div class="memories-header has-memories">
-        <button class="upload-btn" onclick="document.getElementById('fileUpload').click()">
-          <span class="btn-icon">📤</span>
-          <span>Upload More</span>
-        </button>
-        <button class="download-btn" id="downloadBtn" onclick="downloadAllMemories()">
-          <span class="btn-icon">⬇️</span>
-          <span>Download All</span>
-        </button>
+        <button class="upload-btn" onclick="document.getElementById('fileUpload').click()">📤 Upload More</button>
+        <button class="download-btn" id="downloadBtn" onclick="downloadAllMemories()">⬇️ Download All</button>
       </div>
-      
-      <!-- Grid Container for Uploads -->
       <div id="memoriesGrid" class="gallery-grid"></div>
     </div>
   </section>
 
-  <!-- Guestbook Section -->
   <section id="guestbook" class="section">
     <h2>Guest Messages</h2>
     <div class="guestbook-container">
@@ -2031,29 +1178,18 @@
     </div>
   </section>
 
-    <!-- Master of Ceremony Section -->
-  <section id="mc" class="section">
-    <h2>Masters of Ceremony</h2>
-    <div class="mc-container">
-      <div class="gift-table-container">
-    <div class="gift-attendant">
-      <div class="attendant-icon">🎤</div>
-      <h3>Dorcas</h3>
-    </div>
-    <div class="gift-attendant">
-      <div class="attendant-icon">🎤</div>
-      <h3>Enoch</h3>
-    </div>
+  <div id="imageModal" class="modal">
+    <span class="modal-close" id="modalClose">×</span>
+    <span class="modal-nav modal-prev" id="modalPrev">❮</span>
+    <img class="modal-content" id="modalImage" alt="Preview" style="display: none;">
+    <video class="modal-content" id="modalVideo" controls style="display: none;"></video>
+    <span class="modal-nav modal-next" id="modalNext">❯</span>
   </div>
-  </section>
 
-   <!-- Bridal Party Moments Carousel -->
-<section class="section bridal-carousel">
+  <section class="section bridal-carousel">
     <h2>Bridal Party Moments</h2>
-
     <div class="carousel-wrapper" id="bridalCarousel">
       <button class="carousel-btn prev" aria-label="Previous">‹</button>
-
       <div class="carousel-track">
         <img src="images/solomon.jpeg" alt="Bridal Party">
         <img src="images/ella.jpeg" alt="Bridal Party">
@@ -2070,97 +1206,142 @@
         <img src="images/blessing.jpeg" alt="Groomsman">
         <img src="images/nat.jpeg" alt="Bridal Party">
       </div>
-
       <button class="carousel-btn next" aria-label="Next">›</button>
     </div>
   </section>
 
-  <!-- Footer -->
   <footer>
     <p>Thank you for celebrating with us! ❤️</p>
     <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.8;">• Forever Mine • 2025 • </p>
   </footer>
 
   <script>
-    // In-memory storage for guestbook messages
-    let guestbookMessages = [];
+    const heroSlides = document.querySelectorAll('.hero-slide');
+    let currentHeroSlide = 0;
 
-    // Hero Carousel
-    let currentSlide = 0;
-    const slides = document.querySelectorAll('.hero-slide');
-    
-    function showSlide(index) {
-      slides.forEach((slide, i) => {
-        slide.classList.remove('active');
-        if (i === index) {
-          slide.classList.add('active');
+    function showHeroSlide(index) {
+      heroSlides.forEach((s, i) => s.classList.toggle('active', i === index));
+    }
+
+    setInterval(() => {
+      currentHeroSlide = (currentHeroSlide + 1) % heroSlides.length;
+      showHeroSlide(currentHeroSlide);
+    }, 5000);
+
+    function initCarousel(carouselId) {
+      const wrapper = document.getElementById(carouselId);
+      const track = wrapper.querySelector('.carousel-track');
+      const slides = Array.from(track.children);
+      const gap = 19.2;
+      const slideWidth = slides[0].getBoundingClientRect().width + gap;
+      let currentIndex = 0;
+      let autoPlay;
+
+      slides.forEach(slide => track.appendChild(slide.cloneNode(true)));
+
+      function moveTo(index) {
+        track.style.transform = `translateX(-${index * slideWidth}px)`;
+        currentIndex = index;
+      }
+
+      function next() {
+        currentIndex++;
+        moveTo(currentIndex);
+        if (currentIndex >= slides.length) {
+          setTimeout(() => {
+            track.style.transition = 'none';
+            currentIndex = 0;
+            moveTo(0);
+            void track.offsetHeight;
+            track.style.transition = 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+          }, 600);
         }
+      }
+
+      function prev() {
+        if (currentIndex === 0) {
+          track.style.transition = 'none';
+          currentIndex = slides.length;
+          moveTo(currentIndex);
+          void track.offsetHeight;
+          track.style.transition = 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+        }
+        currentIndex--;
+        moveTo(currentIndex);
+      }
+
+      function startAuto() {
+        autoPlay = setInterval(next, 4000);
+      }
+
+      function stopAuto() { clearInterval(autoPlay); }
+
+      wrapper.querySelector('.next').addEventListener('click', () => { stopAuto(); next(); startAuto(); });
+      wrapper.querySelector('.prev').addEventListener('click', () => { stopAuto(); prev(); startAuto(); });
+
+      wrapper.addEventListener('mouseenter', stopAuto);
+      wrapper.addEventListener('mouseleave', startAuto);
+
+      let touchStart = 0;
+      wrapper.addEventListener('touchstart', e => { touchStart = e.touches[0].screenX; stopAuto(); });
+      wrapper.addEventListener('touchend', e => {
+        const touchEnd = e.changedTouches[0].screenX;
+        if (touchStart - touchEnd > 50) next();
+        if (touchEnd - touchStart > 50) prev();
+        startAuto();
       });
+
+      startAuto();
     }
 
-    function nextSlide() {
-      currentSlide = (currentSlide + 1) % slides.length;
-      showSlide(currentSlide);
-    }
+    initCarousel('coupleCarousel');
+    initCarousel('bridalCarousel');
 
-    setInterval(nextSlide, 5000);
-
-    // Scroll arrow functionality
     document.getElementById('scrollArrow').addEventListener('click', () => {
       document.getElementById('program').scrollIntoView({ behavior: 'smooth' });
     });
 
-    // Smooth scroll for navigation
     document.querySelectorAll('.nav a').forEach(link => {
-      link.addEventListener('click', (e) => {
+      link.addEventListener('click', e => {
         e.preventDefault();
-        const target = document.querySelector(link.getAttribute('href'));
-        target.scrollIntoView({ behavior: 'smooth' });
+        document.querySelector(link.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
       });
     });
 
-    // --- UNIFIED MODAL LOGIC (Gallery + Memories) ---
     const modal = document.getElementById('imageModal');
     const modalImg = document.getElementById('modalImage');
     const modalVideo = document.getElementById('modalVideo');
     const modalClose = document.getElementById('modalClose');
     const modalPrev = document.getElementById('modalPrev');
     const modalNext = document.getElementById('modalNext');
-    
-    // State management for modal
-    let currentContext = 'gallery'; // 'gallery' or 'memories'
+
+    let currentContext = 'gallery';
     let currentIndex = 0;
 
-    // 1. Setup Static Gallery Data
-    const galleryItems = document.querySelectorAll('.gallery-item');
-    const staticGalleryData = Array.from(galleryItems).map(item => {
-      const img = item.querySelector('img');
-      return { type: 'image', src: img ? img.src : '' };
-    }).filter(item => item.src);
+    const staticGalleryData = Array.from(document.querySelectorAll('#coupleCarousel img')).map(img => ({
+      type: 'image',
+      src: img.src
+    }));
 
-    // 2. Setup Dynamic Memories Data
     let memoriesData = [];
 
-    // Attach click events to static gallery items
-    galleryItems.forEach((item, index) => {
-      item.addEventListener('click', () => {
+    document.querySelectorAll('#coupleCarousel img').forEach((img, i) => {
+      img.style.cursor = 'pointer';
+      img.addEventListener('click', () => {
         currentContext = 'gallery';
-        currentIndex = index;
+        currentIndex = i;
         openModal();
       });
     });
 
-    // Function to open modal based on current state
     function openModal() {
       const dataList = currentContext === 'gallery' ? staticGalleryData : memoriesData;
       const item = dataList[currentIndex];
-      
       if (!item) return;
 
       modal.classList.add('active');
       document.body.style.overflow = 'hidden';
 
-      // Reset display
       modalImg.style.display = 'none';
       modalVideo.style.display = 'none';
       modalVideo.pause();
@@ -2168,7 +1349,6 @@
       if (item.type === 'video') {
         modalVideo.src = item.src;
         modalVideo.style.display = 'block';
-        modalVideo.play();
       } else {
         modalImg.src = item.src;
         modalImg.style.display = 'block';
@@ -2181,326 +1361,122 @@
       modalVideo.pause();
     }
 
-    // Modal Controls
     modalClose.addEventListener('click', closeModal);
-    modal.addEventListener('click', (e) => {
-      if (e.target === modal) closeModal();
-    });
+    modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
 
-    function navigateModal(direction) {
+    function navigateModal(dir) {
       const dataList = currentContext === 'gallery' ? staticGalleryData : memoriesData;
-      currentIndex = (currentIndex + direction + dataList.length) % dataList.length;
+      currentIndex = (currentIndex + dir + dataList.length) % dataList.length;
       openModal();
     }
 
-    modalPrev.addEventListener('click', (e) => {
-      e.stopPropagation();
-      navigateModal(-1);
-    });
+    modalPrev.addEventListener('click', e => { e.stopPropagation(); navigateModal(-1); });
+    modalNext.addEventListener('click', e => { e.stopPropagation(); navigateModal(1); });
 
-    modalNext.addEventListener('click', (e) => {
-      e.stopPropagation();
-      navigateModal(1);
-    });
-
-    document.addEventListener('keydown', (e) => {
+    document.addEventListener('keydown', e => {
       if (modal.classList.contains('active')) {
         if (e.key === 'Escape') closeModal();
-        else if (e.key === 'ArrowLeft') navigateModal(-1);
-        else if (e.key === 'ArrowRight') navigateModal(1);
+        if (e.key === 'ArrowLeft') navigateModal(-1);
+        if (e.key === 'ArrowRight') navigateModal(1);
       }
     });
 
-    // --- MEMORIES UPLOAD LOGIC ---
     const fileInput = document.getElementById('fileUpload');
     const memoriesGrid = document.getElementById('memoriesGrid');
     const uploadContainer = document.getElementById('uploadContainer');
 
     function updateUploadUIState() {
-      if (memoriesData.length > 0) {
-        uploadContainer.classList.add('has-content');
-      } else {
-        uploadContainer.classList.remove('has-content');
-      }
+      uploadContainer.classList.toggle('has-content', memoriesData.length > 0);
     }
 
-    fileInput.addEventListener('change', (e) => {
+    fileInput.addEventListener('change', e => {
       const files = Array.from(e.target.files);
-      
       files.forEach(file => {
         const url = URL.createObjectURL(file);
         const isVideo = file.type.startsWith('video/');
-        const type = isVideo ? 'video' : 'image';
-        
-        // Add to data array with file reference
-        memoriesData.push({ type, src: url, file });
-        const newIndex = memoriesData.length - 1;
+        memoriesData.push({ type: isVideo ? 'video' : 'image', src: url, file });
 
-        // Create DOM Element
         const item = document.createElement('div');
         item.className = 'gallery-item';
-        
         if (isVideo) {
-            // Video Thumbnail
-            item.innerHTML = `
-                <video src="${url}#t=1.0" preload="metadata" muted></video>
-                <div class="video-indicator">▶</div>
-            `;
+          item.innerHTML = `<video src="${url}#t=1.0" preload="metadata" muted></video><div class="video-indicator">▶</div>`;
         } else {
-            // Image Thumbnail
-            item.innerHTML = `<img src="${url}" alt="Memory">`;
+          item.innerHTML = `<img src="${url}" alt="Memory">`;
         }
-        
-        // Add click listener
         item.addEventListener('click', () => {
-            currentContext = 'memories';
-            currentIndex = newIndex;
-            openModal();
+          currentContext = 'memories';
+          currentIndex = memoriesData.length - 1;
+          openModal();
         });
-        
         memoriesGrid.appendChild(item);
       });
-      
       updateUploadUIState();
-      // Clear input to allow re-uploading same file
-      e.target.value = ''; 
+      e.target.value = '';
     });
 
-    // Download all memories functionality
     async function downloadAllMemories() {
-      if (memoriesData.length === 0) {
-        alert('No memories to download yet!');
-        return;
+      if (memoriesData.length === 0) return alert('No memories to download yet!');
+
+      const btn = document.getElementById('downloadBtn');
+      btn.disabled = true;
+      btn.innerHTML = '⏳ Downloading...';
+
+      for (let i = 0; i < memoriesData.length; i++) {
+        const a = document.createElement('a');
+        a.href = memoriesData[i].src;
+        a.download = `wedding-memory-${i + 1}.${memoriesData[i].type === 'video' ? 'mp4' : 'jpg'}`;
+        a.click();
+        if (i < memoriesData.length - 1) await new Promise(r => setTimeout(r, 300));
       }
 
-      const downloadBtn = document.getElementById('downloadBtn');
-      downloadBtn.disabled = true;
-      downloadBtn.innerHTML = '<span class="btn-icon">⏳</span><span>Downloading...</span>';
-
-      try {
-        // Download each file
-        for (let i = 0; i < memoriesData.length; i++) {
-          const memory = memoriesData[i];
-          const link = document.createElement('a');
-          link.href = memory.src;
-          
-          // Generate filename
-          const extension = memory.type === 'video' ? 'mp4' : 'jpg';
-          link.download = `wedding-memory-${i + 1}.${extension}`;
-          
-          document.body.appendChild(link);
-          link.click();
-          document.body.removeChild(link);
-          
-          // Small delay between downloads to prevent browser blocking
-          if (i < memoriesData.length - 1) {
-            await new Promise(resolve => setTimeout(resolve, 300));
-          }
-        }
-        
-        downloadBtn.innerHTML = '<span class="btn-icon">✅</span><span>Downloaded!</span>';
-        setTimeout(() => {
-          downloadBtn.innerHTML = '<span class="btn-icon">⬇️</span><span>Download All</span>';
-          downloadBtn.disabled = false;
-        }, 2000);
-      } catch (error) {
-        console.error('Download error:', error);
-        downloadBtn.innerHTML = '<span class="btn-icon">❌</span><span>Error</span>';
-        setTimeout(() => {
-          downloadBtn.innerHTML = '<span class="btn-icon">⬇️</span><span>Download All</span>';
-          downloadBtn.disabled = false;
-        }, 2000);
-      }
+      btn.innerHTML = '✅ Downloaded!';
+      setTimeout(() => {
+        btn.innerHTML = '⬇️ Download All';
+        btn.disabled = false;
+      }, 2000);
     }
 
-    // Initialize UI state
     updateUploadUIState();
 
-    // Guestbook functionality
-    const form = document.getElementById('guestbookForm');
-    const messagesDiv = document.getElementById('messages');
+    let guestbookMessages = [
+      { name: "Sarah & James", message: "Congratulations to the beautiful couple! Wishing you a lifetime of love and happiness together. ❤️" },
+      { name: "The Johnson Family", message: "So happy to celebrate this special day with you both. May your love continue to grow stronger each day!" }
+    ];
 
-    const loadMessages = () => {
+    const messagesDiv = document.getElementById('messages');
+    function loadMessages() {
       messagesDiv.innerHTML = '';
       guestbookMessages.forEach(msg => {
         const div = document.createElement('div');
         div.className = 'message-card';
-        div.innerHTML = `
-          <strong>${msg.name}</strong>
-          <p>${msg.message}</p>
-        `;
+        div.innerHTML = `<strong>${msg.name}</strong><p>${msg.message}</p>`;
         messagesDiv.appendChild(div);
       });
-
       if (guestbookMessages.length === 0) {
         messagesDiv.innerHTML = '<p style="text-align: center; color: #8a8a8a;">No messages yet. Be the first to share your wishes!</p>';
       }
-    };
+    }
 
-    form.addEventListener('submit', e => {
+    document.getElementById('guestbookForm').addEventListener('submit', e => {
       e.preventDefault();
-      const name = document.getElementById('guestName').value;
-      const message = document.getElementById('guestMessage').value;
-      
-      guestbookMessages.unshift({ name, message });
-      loadMessages();
-      form.reset();
+      const name = document.getElementById('guestName').value.trim();
+      const message = document.getElementById('guestMessage').value.trim();
+      if (name && message) {
+        guestbookMessages.unshift({ name, message });
+        loadMessages();
+        e.target.reset();
+      }
     });
 
-    // Sample messages
-    guestbookMessages = [
-      { name: "Sarah & James", message: "Congratulations to the beautiful couple! Wishing you a lifetime of love and happiness together. ❤️" },
-      { name: "The Johnson Family", message: "So happy to celebrate this special day with you both. May your love continue to grow stronger each day!" }
-    ];
     loadMessages();
 
-    // Timeline Animation
-    const observerOptions = {
-      threshold: 0.15,
-      rootMargin: "0px 0px -50px 0px"
-    };
-
-    const observer = new IntersectionObserver((entries) => {
+    const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
+        if (entry.isIntersecting) entry.target.classList.add('visible');
       });
-    }, observerOptions);
+    }, { threshold: 0.15, rootMargin: "0px 0px -50px 0px" });
 
-    document.querySelectorAll('.event').forEach(event => {
-      observer.observe(event);
-    });
-
- /* ================= CLASSY GALLERY SHUFFLE ================= */
-
-const galleryGrid = document.getElementById("galleryGrid");
-let isPaused = false;
-
-/**
- * Elegant one-item swap
- * Runs slowly and gracefully
- */
-function classyShuffle() {
-  if (isPaused) return;
-
-  const items = Array.from(galleryGrid.children);
-  if (items.length < 2) return;
-
-  const index = Math.floor(Math.random() * items.length);
-  const item = items[index];
-
-  item.classList.add("is-swapping");
-
-  setTimeout(() => {
-    item.classList.remove("is-swapping");
-    galleryGrid.appendChild(item);
-  }, 1400);
-}
-
-/* Start after page settles */
-setTimeout(() => {
-  setInterval(classyShuffle, 30000); // every 30 seconds
-}, 5000);
-
-/* Pause when user interacts */
-galleryGrid.addEventListener("mouseenter", () => isPaused = true);
-galleryGrid.addEventListener("mouseleave", () => isPaused = false);
-galleryGrid.addEventListener("click", () => isPaused = true);
-
-
-const bridalCarousel = document.getElementById('bridalCarousel');
-    const track = bridalCarousel.querySelector('.carousel-track');
-    const sldes = Array.from(track.children);
-    const slideWidth = sldes[0].getBoundingClientRect().width + 19.2;
-    let ci = 0;
-    let autoPlayInterval;
-
-    // Duplicate slides for seamless infinite scroll (optional but smoother)
-    sldes.forEach(slide => {
-      const clone = slide.cloneNode(true);
-      track.appendChild(clone);
-    });
-
-    function moveToSlide(index) {
-      track.style.transform = `translateX(-${index * slideWidth}px)`;
-      ci = index;
-    }
-
-    function nextSlide() {
-      ci++;
-      moveToSlide(ci);
-
-      // Reset to beginning seamlessly when we reach the cloned set
-      if (ci >= sldes.length) {
-        setTimeout(() => {
-          track.style.transition = 'none';
-          ci = 0;
-          moveToSlide(0);
-          // Force reflow
-          void track.offsetHeight;
-          track.style.transition = 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
-        }, 600);
-      }
-    }
-
-    function prevSlide() {
-      if (ci === 0) {
-        // Jump to the end (cloned slides) instantly
-        track.style.transition = 'none';
-        ci = sldes.length;
-        moveToSlide(ci);
-        void track.offsetHeight;
-        track.style.transition = 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
-      }
-      ci--;
-      moveToSlide(ci);
-    }
-
-    // Auto-play
-    function startAutoPlay() {
-      autoPlayInterval = setInterval(nextSlide, 4000); // Change slide every 4 seconds
-    }
-
-    function stopAutoPlay() {
-      clearInterval(autoPlayInterval);
-    }
-
-    // Button controls
-    bridalCarousel.querySelector('.next').addEventListener('click', () => {
-      stopAutoPlay();
-      nextSlide();
-      startAutoPlay(); // resume
-    });
-
-    bridalCarousel.querySelector('.prev').addEventListener('click', () => {
-      stopAutoPlay();
-      prevSlide();
-      startAutoPlay();
-    });
-
-    // Pause on hover
-    bridalCarousel.addEventListener('mouseenter', stopAutoPlay);
-    bridalCarousel.addEventListener('mouseleave', startAutoPlay);
-
-    // Start autoplay on load
-    startAutoPlay();
-
-    // Touch/swipe support (basic)
-    let touchStartX = 0;
-    bridalCarousel.addEventListener('touchstart', e => {
-      touchStartX = e.changedTouches[0].screenX;
-      stopAutoPlay();
-    });
-
-    bridalCarousel.addEventListener('touchend', e => {
-      const touchEndX = e.changedTouches[0].screenX;
-      if (touchStartX - touchEndX > 50) nextSlide();
-      if (touchEndX - touchStartX > 50) prevSlide();
-      startAutoPlay();
-    });
-
-
+    document.querySelectorAll('.event').forEach(event => observer.observe(event));
   </script>
 </body>
 </html>
