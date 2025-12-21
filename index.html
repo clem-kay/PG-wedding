@@ -892,6 +892,22 @@
       .carousel-btn { width: 50px; height: 50px; font-size: 1.7rem; }
       #coupleCarousel .carousel-track img { width: 260px; height: 320px; }
     }
+    .hero-top-logo {
+      position: absolute;
+      top: 2rem;
+      left: 2rem;
+      width: 160px;
+      max-width: 45vw;
+      z-index: 3;
+      pointer-events: none;
+      filter: drop-shadow(0 6px 20px rgba(0, 0, 0, 0.35));
+      animation: logoFloat 6s ease-in-out infinite;
+    }
+
+    @keyframes logoFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
   </style>
 </head>
 <body>
@@ -902,6 +918,11 @@
       <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1606800052052-a08af7148866?w=1600');"></div>
       <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1520854221256-17451cc331bf?w=1600');"></div>
     </div>
+    <img
+      src="images/logo.png"
+      alt="Wedding Logo"
+      class="hero-top-logo"
+    />
     <div class="hero-content">
       <h1>Pious & Getrude</h1>
       <p>Join us for our unforgettable wedding celebration</p>
@@ -913,7 +934,7 @@
   <nav class="nav">
     <ul>
       <li><a href="#program">Program</a></li>
-      <li><a href="#ministers">Clegy</a></li>
+      <li><a href="#ministers">Clergy</a></li>
       <li><a href="#bridal-party">Bridal Party</a></li>
       <li><a href="#mc">MCs</a></li>
       <li><a href="#gift-table">Gift Table</a></li>
@@ -994,7 +1015,7 @@
   </section>
 
   <section id="ministers" class="section" style="background: linear-gradient(135deg, rgba(135, 168, 120, 0.08), rgba(232, 220, 196, 0.15));">
-    <h2>Clegy</h2>
+    <h2>Clergy</h2>
     <div class="ministers-grid">
       <div class="minister-card featured">
         <h3>Rev Alexander Botchwey</h3>
