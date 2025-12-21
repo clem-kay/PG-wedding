@@ -895,7 +895,8 @@
     .hero-top-logo {
       position: absolute;
       top: 2rem;
-      left: 2rem;
+      left: 50%;                        
+      transform: translateX(-50%);      
       width: 160px;
       max-width: 45vw;
       z-index: 3;
@@ -905,8 +906,8 @@
     }
 
     @keyframes logoFloat {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-8px); }
+      0%, 100% { transform: translateX(-50%) translateY(0); }    /* Include translateX */
+      50% { transform: translateX(-50%) translateY(-8px); }      /* Include translateX */
     }
   </style>
 </head>
